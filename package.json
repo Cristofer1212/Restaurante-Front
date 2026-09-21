@@ -1,0 +1,28 @@
+{
+  "name": "restaurant-front",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema Frontend POS de Alto Rendimiento para Restaurantes (Control de Stock y Producción en Cocina)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node test-auth.js",
+    "start": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "pos",
+    "restaurant",
+    "kds",
+    "stock-control",
+    "vanilla-js",
+    "es-modules",
+    "hexagonal-symmetry"
+  ],
+  "author": "Frontend Expert",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

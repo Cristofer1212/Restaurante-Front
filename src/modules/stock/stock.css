@@ -1,0 +1,118 @@
+/**
+ * ESTILOS DE CONTROL DE STOCK (stock.css)
+ */
+
+.stock-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-canvas);
+}
+
+.stock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border-color-light);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stock-branding {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.stock-operator-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stock-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--border-radius-full);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.stock-alert-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 2rem;
+  background-color: var(--color-warning-bg);
+  border-bottom: 1px solid var(--color-warning-border);
+  color: var(--color-warning-text);
+  font-size: 0.9rem;
+}
+
+.stock-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.stock-table-card {
+  background: #FFFFFF;
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--border-color-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+}
+
+.stock-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.stock-table th {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-navy-700);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.75rem;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.stock-table td {
+  padding: 1.1rem 1.75rem;
+  border-bottom: 1px solid var(--border-color-light);
+  font-size: 0.95rem;
+  color: var(--color-navy-800);
+}
+
+.stock-table tr:hover {
+  background-color: #F8FAFC;
+}
+
+.row-warning {
+  background-color: #FFFDF5;
+}
+
+.stock-qty-val {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+}
+
+.stock-qty-val.val-low {
+  color: var(--color-danger);
+}

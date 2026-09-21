@@ -1,0 +1,500 @@
+/**
+ * ESTILOS MODULARES AISLADOS: MÓDULO AUTH
+ * 
+ * Cumplimiento estricto:
+ * - 60% Fondo: #F8FAFC
+ * - 30% Estructura/Textos: #0F172A
+ * - 10% Acciones Clave: #E15A2B
+ * - Acentos: #10B981 (Clock-In/Éxito), #F59E0B (Alerta), #EF4444 (Error PIN)
+ * - Ergonomía táctil para Handhelds (360px) hasta KDS (32'')
+ */
+
+.auth-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-canvas); /* 60% */
+  padding: clamp(1rem, 2.5vw, 2.5rem);
+  position: relative;
+  overflow-y: auto;
+  gap: 1.25rem;
+}
+
+/* Barra Superior del Terminal */
+.terminal-topbar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.terminal-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.terminal-admin-btn {
+  font-size: 0.85rem;
+  padding: 0.45rem 1rem;
+  min-height: 42px;
+  box-shadow: var(--shadow-sm);
+}
+
+.terminal-admin-btn:hover {
+  background-color: var(--color-navy-100);
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+/* Decoración geométrica sutil en el fondo (sin recargar la pantalla) */
+.auth-view::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(225, 90, 43, 0.07) 0%, rgba(248, 250, 252, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-view::after {
+  content: '';
+  position: fixed;
+  bottom: -10%;
+  left: -5%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.04) 0%, rgba(248, 250, 252, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contenedor Principal Adaptable (Split Layout en Pantallas Grandes / POS) */
+.auth-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  align-items: stretch;
+}
+
+@media (min-width: 860px) {
+  .auth-container {
+    grid-template-columns: 1.15fr 1fr; /* Panel informativo / colaboradores + Panel Numpad PIN */
+  }
+}
+
+/* ==========================================================================
+   PANEL IZQUIERDO: Marca, Reloj en Tiempo Real y Selector de Colaborador
+   ========================================================================== */
+.auth-left-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--border-color-light);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-glass);
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary); /* 10% */
+  background-color: var(--color-brand-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--border-radius-full);
+}
+
+.live-clock-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  background-color: var(--color-navy-900); /* 30% */
+  color: #FFFFFF;
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);
+}
+
+.live-time {
+  font-family: var(--font-family-mono);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+.live-date {
+  font-size: 0.9rem;
+  color: var(--color-navy-300);
+  margin-top: 0.4rem;
+  text-transform: capitalize;
+}
+
+/* Selector Rápido de Colaborador Táctil */
+.operator-selection-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.operator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.operator-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  background: var(--color-bg-subtle);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-md);
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.operator-card:hover {
+  background: #FFFFFF;
+  border-color: var(--border-color-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.operator-card.selected {
+  background: #FFFFFF;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 1px var(--color-brand-primary), 0 4px 12px var(--color-brand-glow);
+}
+
+.operator-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-navy-900);
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.operator-role-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius-xs);
+  text-transform: uppercase;
+}
+
+.role-cocina { background: #FEF3C7; color: #92400E; }
+.role-almacenero { background: #DBEAFE; color: #1E40AF; }
+.role-admin { background: #E0E7FF; color: #3730A3; }
+.role-cajero { background: #D1FAE5; color: #065F46; }
+
+/* Entrada manual alternativa (DNI / Usuario) */
+.manual-input-box {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color-light);
+}
+
+.input-field {
+  width: 100%;
+  height: 52px;
+  padding: 0 1rem;
+  background-color: var(--color-bg-subtle);
+  border: 1.5px solid var(--border-color-light);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-navy-900);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.input-field:focus {
+  border-color: var(--color-brand-primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px var(--color-brand-subtle);
+}
+
+/* ==========================================================================
+   PANEL DERECHO: TARJETA GLASSMORPHISM & TECLADO NUMÉRICO (PIN PAD)
+   ========================================================================== */
+.auth-right-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--glass-backdrop-blur);
+  -webkit-backdrop-filter: var(--glass-backdrop-blur);
+  border: var(--border-glass);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.pin-pad-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.active-operator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: var(--color-navy-100);
+  border-radius: var(--border-radius-full);
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-navy-800);
+}
+
+/* Ranuras de Visualización del PIN (4 Dígitos) */
+.pin-display-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 22px);
+  margin: 1.25rem 0 2rem;
+  min-height: 48px;
+}
+
+.pin-dot {
+  width: clamp(20px, 3vw, 26px);
+  height: clamp(20px, 3vw, 26px);
+  border-radius: 50%;
+  border: 2.5px solid var(--color-navy-300);
+  background-color: transparent;
+  transition: all var(--transition-fast);
+}
+
+.pin-dot.filled {
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-brand-primary); /* 10% Marca */
+  box-shadow: 0 0 12px var(--color-brand-glow);
+  transform: scale(1.15);
+}
+
+.pin-dot.error {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+/* Teclado Táctil 3x4 (Ergonomía de Alto Rendimiento) */
+.touch-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--touch-keypad-gap);
+  width: 100%;
+  max-width: 340px;
+}
+
+.keypad-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: var(--touch-keypad-size);
+  min-height: var(--touch-keypad-size);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-color-light);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-navy-900);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.keypad-btn:active {
+  transform: scale(0.92);
+  background-color: var(--color-navy-100);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.keypad-digit {
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.keypad-sub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-navy-500);
+  margin-top: 2px;
+}
+
+/* Botones especiales de control: Borrar (Clear) y Retroceso (Backspace) */
+.keypad-btn-action {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-navy-700);
+}
+
+.keypad-btn-action:hover {
+  background-color: var(--color-navy-100);
+}
+
+.keypad-btn-action svg {
+  stroke: currentColor;
+}
+
+/* Barra de Estado Inferior */
+.auth-footer-status {
+  margin-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--color-navy-500);
+}
+
+.status-indicator-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.status-dot.mock {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+/* ==========================================================================
+   MODAL DE CONTROL DE ASISTENCIA (CLOCK-IN / CLOCK-OUT - PLANILLA PERÚ)
+   ========================================================================== */
+.attendance-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal-backdrop);
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: var(--glass-backdrop-blur);
+  -webkit-backdrop-filter: var(--glass-backdrop-blur);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.attendance-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.attendance-modal-card {
+  width: 100%;
+  max-width: 520px;
+  background: #FFFFFF;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color-light);
+  overflow: hidden;
+  transform: translateY(24px) scale(0.97);
+  transition: transform var(--transition-spring);
+}
+
+.attendance-modal-backdrop.active .attendance-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header-strip {
+  background-color: var(--color-navy-900);
+  color: #FFFFFF;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.attendance-status-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color-light);
+  margin-bottom: 1.75rem;
+}
+
+.attendance-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Pantallas grandes o monitores KDS de hasta 32 pulgadas */
+@media (min-width: 1920px) {
+  .auth-container {
+    max-width: 1300px;
+  }
+  .touch-keypad {
+    max-width: 400px;
+  }
+  :root {
+    --touch-keypad-size: 92px;
+  }
+}

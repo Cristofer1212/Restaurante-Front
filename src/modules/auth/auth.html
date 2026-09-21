@@ -1,0 +1,246 @@
+<div class="auth-view animate-fade-in">
+  <div class="auth-container">
+    
+    <!-- ====================================================================
+         PANEL IZQUIERDO: Marca, Reloj en Tiempo Real y Selector de Colaboradores
+         ==================================================================== -->
+    <div class="auth-left-pane">
+      <div>
+        <div class="brand-header">
+          <div>
+            <span class="brand-badge">Square POS • Latam</span>
+            <h1 class="text-h1" style="margin-top: 0.5rem;">Terminal de Control</h1>
+          </div>
+          <div id="connection-badge" class="badge badge-success" title="Estado de Conexión con el Backend">
+            <span class="status-dot online"></span> Conectado
+          </div>
+        </div>
+
+        <!-- Reloj Digital para Operarios de Cocina y Caja -->
+        <div class="live-clock-card">
+          <div class="text-caption" style="color: var(--color-navy-300); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">
+            Hora Oficial del Sistema
+          </div>
+          <div id="live-clock-time" class="live-time">12:00:00</div>
+          <div id="live-clock-date" class="live-date">Cargando fecha...</div>
+        </div>
+
+        <!-- Selector Táctil Rápido de Colaboradores -->
+        <div class="operator-selection-title">
+          <span class="text-h3">Seleccione Colaborador</span>
+          <span class="text-caption">o ingrese documento abajo</span>
+        </div>
+
+        <div class="operator-grid" id="operator-grid">
+          <!-- Tarjetas renderizadas dinámicamente -->
+          <button type="button" class="operator-card selected" data-id="72849102" data-name="Marco Bartra" data-role="COCINA">
+            <span class="operator-name">Marco Bartra</span>
+            <span class="operator-role-pill role-cocina">Cocina (KDS)</span>
+          </button>
+
+          <button type="button" class="operator-card" data-id="45812903" data-name="Alex Vega" data-role="ALMACENERO">
+            <span class="operator-name">Alex Vega</span>
+            <span class="operator-role-pill role-almacenero">Almacenero</span>
+          </button>
+
+          <button type="button" class="operator-card" data-id="10928374" data-name="Sofía Méndez" data-role="ADMIN">
+            <span class="operator-name">Sofía Méndez</span>
+            <span class="operator-role-pill role-admin">Administrador</span>
+          </button>
+
+          <button type="button" class="operator-card" data-id="88392011" data-name="Lucía Santos" data-role="CAJERO">
+            <span class="operator-name">Lucía Santos</span>
+            <span class="operator-role-pill role-cajero">Caja / TPV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Entrada manual alternativa por DNI / Código de Colaborador -->
+      <div class="manual-input-box">
+        <label for="identifier-input" class="text-caption" style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--color-navy-700);">
+          Documento de Identidad (DNI) o Usuario:
+        </label>
+        <div style="position: relative;">
+          <input 
+            type="text" 
+            id="identifier-input" 
+            class="input-field" 
+            placeholder="Ingrese DNI o nombre de usuario" 
+            value="72849102"
+            autocomplete="off"
+            maxlength="20"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         PANEL DERECHO: Tarjeta Flotante Glassmorphism & Teclado Táctil de PIN
+         ==================================================================== -->
+    <div class="auth-right-pane glass-panel">
+      <div class="pin-pad-header">
+        <div id="active-operator-badge" class="active-operator-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="active-operator-label">Marco Bartra • COCINA</span>
+        </div>
+        <h2 class="text-h2">Ingrese PIN de Acceso</h2>
+        <p class="text-caption" style="margin-top: 0.25rem;">4 dígitos numéricos de seguridad</p>
+      </div>
+
+      <!-- Indicadores de los 4 Dígitos del PIN -->
+      <div id="pin-dots-container" class="pin-display-container">
+        <div class="pin-dot" data-index="0"></div>
+        <div class="pin-dot" data-index="1"></div>
+        <div class="pin-dot" data-index="2"></div>
+        <div class="pin-dot" data-index="3"></div>
+      </div>
+
+      <!-- Teclado Numérico Táctil de Alta Velocidad (On-screen Numpad) -->
+      <div class="touch-keypad" id="touch-keypad">
+        <button type="button" class="keypad-btn" data-key="1">
+          <span class="keypad-digit">1</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="2">
+          <span class="keypad-digit">2</span>
+          <span class="keypad-sub">ABC</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="3">
+          <span class="keypad-digit">3</span>
+          <span class="keypad-sub">DEF</span>
+        </button>
+
+        <button type="button" class="keypad-btn" data-key="4">
+          <span class="keypad-digit">4</span>
+          <span class="keypad-sub">GHI</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="5">
+          <span class="keypad-digit">5</span>
+          <span class="keypad-sub">JKL</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="6">
+          <span class="keypad-digit">6</span>
+          <span class="keypad-sub">MNO</span>
+        </button>
+
+        <button type="button" class="keypad-btn" data-key="7">
+          <span class="keypad-digit">7</span>
+          <span class="keypad-sub">PQRS</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="8">
+          <span class="keypad-digit">8</span>
+          <span class="keypad-sub">TUV</span>
+        </button>
+        <button type="button" class="keypad-btn" data-key="9">
+          <span class="keypad-digit">9</span>
+          <span class="keypad-sub">WXYZ</span>
+        </button>
+
+        <!-- Botón Limpiar Todo (C) -->
+        <button type="button" class="keypad-btn keypad-btn-action" data-key="clear" title="Limpiar PIN">
+          <span class="keypad-digit" style="font-size: 1.25rem; font-weight: 800;">C</span>
+        </button>
+
+        <button type="button" class="keypad-btn" data-key="0">
+          <span class="keypad-digit">0</span>
+        </button>
+
+        <!-- Botón Retroceso (Backspace) -->
+        <button type="button" class="keypad-btn keypad-btn-action" data-key="backspace" title="Borrar último dígito">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+            <line x1="18" y1="9" x2="12" y2="15"></line>
+            <line x1="12" y1="9" x2="18" y2="15"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Pie del Teclado / Control de Modo Mock -->
+      <div class="auth-footer-status">
+        <div class="status-indicator-pill">
+          <span id="backend-status-dot" class="status-dot online"></span>
+          <span id="backend-status-text">Backend Java :8080</span>
+        </div>
+        <button type="button" id="btn-toggle-mock" class="btn-ghost text-caption" style="font-weight: 600; text-decoration: underline;">
+          Modo Demo Mock
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====================================================================
+       MODAL DE CONTROL DE ASISTENCIA (CLOCK-IN / CLOCK-OUT - PLANILLA PERÚ)
+       ==================================================================== -->
+  <div id="attendance-modal" class="attendance-modal-backdrop">
+    <div class="attendance-modal-card glass-panel-elevated">
+      
+      <div class="modal-header-strip">
+        <div>
+          <span class="badge badge-brand" style="margin-bottom: 0.35rem;">Planilla Perú • Marcaciones</span>
+          <h2 class="text-h2" style="color: #FFFFFF;">Control de Asistencia</h2>
+        </div>
+        <button type="button" id="btn-close-attendance-modal" class="btn-ghost" style="color: #FFFFFF; font-size: 1.5rem; padding: 0.25rem 0.6rem;">
+          ✕
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="width: 52px; height: 52px; border-radius: 50%; background-color: var(--color-brand-subtle); display: flex; align-items: center; justify-content: center; color: var(--color-brand-primary);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <div id="attendance-user-name" class="text-h3">Colaborador</div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.2rem;">
+              <span id="attendance-user-role" class="operator-role-pill role-cocina">COCINA</span>
+              <span class="text-caption" id="attendance-user-id">ID: 1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="attendance-status-box">
+          <div>
+            <div class="text-caption" style="font-weight: 600;">Estado de Jornada Hoy:</div>
+            <div id="attendance-current-status" style="font-weight: 700; font-size: 1.1rem; color: var(--color-navy-900);">
+              Sin Marcación de Entrada
+            </div>
+          </div>
+          <span id="attendance-status-badge" class="badge badge-warning">Pendiente</span>
+        </div>
+
+        <div class="attendance-actions-grid">
+          <!-- Botón Clock-In (10% Éxito Funcional #10B981) -->
+          <button type="button" id="btn-clock-in" class="btn btn-success" style="font-size: 0.95rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            Clock-In (Entrada)
+          </button>
+
+          <!-- Botón Clock-Out (Acento Alerta / Salida #F59E0B) -->
+          <button type="button" id="btn-clock-out" class="btn btn-warning" style="font-size: 0.95rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+            </svg>
+            Clock-Out (Salida)
+          </button>
+        </div>
+
+        <button type="button" id="btn-proceed-station" class="btn btn-brand" style="width: 100%; margin-top: 0.5rem;">
+          Continuar a Estación de Trabajo →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

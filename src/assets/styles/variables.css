@@ -1,0 +1,141 @@
+/**
+ * DESIGN SYSTEM TOKENS - RESTAURANT POS & KDS
+ * 
+ * Basado estrictamente en:
+ * - Regla de Color 60-30-10:
+ *   - 60% Fondo de Interfaz: #F8FAFC
+ *   - 30% Estructura, Textos y Contenedores: #0F172A
+ *   - 10% Color de Marca (Acciones Clave): #E15A2B
+ * - Acentos Funcionales:
+ *   - Éxito / Confirmación: #10B981
+ *   - Alerta / Advertencia: #F59E0B
+ *   - Peligro / Error: #EF4444
+ * - Ergonomía Táctil y Pantallas de Alto Rendimiento (KDS, TPV, Handhelds).
+ */
+
+:root {
+  /* ==========================================================================
+     1. COLOR PALETTE (Regla 60-30-10 y Acentos Funcionales)
+     ========================================================================== */
+  
+  /* 60% - Fondos y Canvas Neutro Limpio (Evita fatiga visual en turnos largos) */
+  --color-bg-canvas: #F8FAFC;
+  --color-bg-subtle: #F1F5F9;
+  --color-bg-card: #FFFFFF;
+  --color-bg-glass: rgba(255, 255, 255, 0.82);
+  --color-bg-glass-strong: rgba(255, 255, 255, 0.94);
+
+  /* 30% - Estructura, Jerarquía Tipográfica y Contenedores de Alto Contraste */
+  --color-navy-900: #0F172A; /* Slate 900 */
+  --color-navy-800: #1E293B;
+  --color-navy-700: #334155;
+  --color-navy-600: #475569;
+  --color-navy-500: #64748B;
+  --color-navy-300: #CBD5E1;
+  --color-navy-100: #F1F5F9;
+
+  /* 10% - Color de Marca (Acciones Clave y Llamadas a la Acción) */
+  --color-brand-primary: #E15A2B;
+  --color-brand-hover: #CD4E21;
+  --color-brand-active: #B7441B;
+  --color-brand-subtle: #FFF2ED;
+  --color-brand-border: rgba(225, 90, 43, 0.35);
+  --color-brand-glow: rgba(225, 90, 43, 0.25);
+
+  /* Acentos Funcionales Semánticos */
+  --color-success: #10B981;
+  --color-success-bg: #ECFDF5;
+  --color-success-border: #A7F3D0;
+  --color-success-text: #065F46;
+
+  --color-warning: #F59E0B;
+  --color-warning-bg: #FFFBEB;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #92400E;
+
+  --color-danger: #EF4444;
+  --color-danger-bg: #FEF2F2;
+  --color-danger-border: #FECACA;
+  --color-danger-text: #991B1B;
+
+  --color-info: #0284C7;
+  --color-info-bg: #F0F9FF;
+  --color-info-border: #BAE6FD;
+
+  /* ==========================================================================
+     2. BORDES, SOMBRAS Y GLASSMORPHISM
+     ========================================================================== */
+  --border-radius-xs: 6px;
+  --border-radius-sm: 10px;
+  --border-radius-md: 14px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 28px;
+  --border-radius-full: 9999px;
+
+  --border-color-light: #E2E8F0;
+  --border-color-subtle: rgba(226, 232, 240, 0.8);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.65);
+  --border-glass-dark: 1px solid rgba(15, 23, 42, 0.08);
+
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  --shadow-glass: 0 20px 40px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  --shadow-touch-active: 0 2px 4px rgba(15, 23, 42, 0.12);
+
+  --glass-backdrop-blur: blur(14px);
+  --glass-backdrop-blur-lg: blur(24px);
+
+  /* ==========================================================================
+     3. TIPOGRAFÍA Y ESCALA VISUAL
+     ========================================================================== */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-md: 1.125rem;   /* 18px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 1.875rem;  /* 30px */
+  --font-size-3xl: 2.25rem;   /* 36px */
+  --font-size-4xl: 3rem;      /* 48px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.5;
+
+  /* ==========================================================================
+     4. ERGONOMÍA TÁCTIL (TOUCH GUIDELINES)
+     ========================================================================== */
+  /* Tamaño mínimo para operarios de restaurante (dedos enguantados, rapidez) */
+  --touch-target-min: 52px;
+  --touch-keypad-size: clamp(64px, 8vw, 84px);
+  --touch-keypad-gap: clamp(10px, 1.5vw, 16px);
+  --touch-tap-highlight: transparent;
+
+  /* ==========================================================================
+     5. TRANSICIONES Y MICROINTERACCIONES
+     ========================================================================== */
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ==========================================================================
+     6. Z-INDEX SYSTEM
+     ========================================================================== */
+  --z-base: 1;
+  --z-floating: 10;
+  --z-drawer: 50;
+  --z-modal-backdrop: 100;
+  --z-modal: 110;
+  --z-toast: 200;
+  --z-lockscreen: 300;
+}

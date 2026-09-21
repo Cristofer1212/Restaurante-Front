@@ -1,0 +1,214 @@
+/**
+ * ESTILOS MODULARES: VISTA DE ADMINISTRADOR (BACKOFFICE)
+ * 
+ * Regla de Color 60-30-10:
+ * - 60% Fondo: #F8FAFC
+ * - 30% Estructura/Textos: #0F172A
+ * - 10% Acciones Clave: #E15A2B
+ */
+
+.admin-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-canvas); /* 60% */
+  padding: clamp(1rem, 2.5vw, 2.5rem);
+  gap: 1.5rem;
+}
+
+/* Barra de Cabecera del Backoffice */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  background: #FFFFFF;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color-light);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.admin-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Grilla de Contenido Principal */
+.admin-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .admin-content-grid {
+    grid-template-columns: 1.15fr 1fr; /* Formulario Registro + Lista Colaboradores */
+  }
+}
+
+@media (min-width: 1920px) {
+  .admin-content-grid {
+    grid-template-columns: 1.1fr 1fr;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+/* Tarjetas Administrativas */
+.admin-card {
+  background: #FFFFFF;
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--border-color-light);
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  box-shadow: var(--shadow-glass);
+}
+
+.card-header {
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-color-light);
+  padding-bottom: 1rem;
+}
+
+/* Formulario de Registro */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-navy-800); /* 30% */
+}
+
+.required-star {
+  color: var(--color-brand-primary); /* 10% */
+}
+
+.form-input,
+.form-select {
+  height: 48px;
+  padding: 0 1rem;
+  background-color: var(--color-bg-subtle);
+  border: 1.5px solid var(--border-color-light);
+  border-radius: var(--border-radius-md);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-navy-900);
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--color-brand-primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px var(--color-brand-subtle);
+}
+
+/* Lista de Colaboradores */
+.collaborators-list-container {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.collaborators-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.collaborator-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+}
+
+.collaborator-item:hover {
+  background-color: #FFFFFF;
+  border-color: var(--color-navy-300);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.collab-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.collab-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--color-navy-900);
+}
+
+.collab-meta {
+  font-size: 0.8rem;
+  color: var(--color-navy-500);
+}
+
+.collab-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-copy-dni {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--border-radius-xs);
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color-light);
+  color: var(--color-navy-700);
+  font-weight: 600;
+}
+
+.btn-copy-dni:hover {
+  background-color: var(--color-navy-100);
+  border-color: var(--color-navy-300);
+}
+
+.empty-state-box {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--color-navy-500);
+  font-size: 0.9rem;
+}

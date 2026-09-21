@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="description" content="Sistema POS y KDS de Alto Rendimiento para Restaurantes - Control de Stock y Producción en Cocina" />
+  <meta name="theme-color" content="#0F172A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Gastro POS & KDS • Control de Producción y Stock</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Core Design Tokens & Reset -->
+  <link rel="stylesheet" href="./src/assets/styles/variables.css" />
+  <link rel="stylesheet" href="./src/assets/styles/reset.css" />
+  <link rel="stylesheet" href="./src/assets/styles/base.css" />
+
+  <!-- Modular Feature Styles -->
+  <link rel="stylesheet" href="./src/modules/admin/admin.css" />
+  <link rel="stylesheet" href="./src/modules/auth/auth.css" />
+  <link rel="stylesheet" href="./src/modules/kitchen/kitchen.css" />
+  <link rel="stylesheet" href="./src/modules/stock/stock.css" />
+</head>
+<body>
+  <!-- Contenedor Raíz de la Aplicación -->
+  <div id="app">
+    <main id="main-content" role="main"></main>
+  </div>
+
+  <!-- Contenedor Global de Toasts y Notificaciones Táctiles -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Entrada Modular ES6 (Vanilla JS Puro sin Frameworks Pesados) -->
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
