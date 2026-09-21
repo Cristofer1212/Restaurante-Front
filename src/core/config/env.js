@@ -6,10 +6,10 @@
  */
 
 export const ENV = {
-  // URL base del backend Java SE HttpServer
-  API_BASE_URL: (typeof window !== 'undefined' && window.RESTAURANT_API_URL) 
-    ? window.RESTAURANT_API_URL 
-    : 'http://localhost:8080',
+  // URL base adaptada para Vite y Render
+  API_BASE_URL: (typeof window !== 'undefined' && window.RESTAURANT_API_URL)
+    ? window.RESTAURANT_API_URL
+    : (import.meta.env.VITE_API_URL || 'http://localhost:8080'),
 
   // Rutas simétricas a AuthHttpHandler y AsistenciaHttpHandler
   ENDPOINTS: {
