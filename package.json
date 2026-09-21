@@ -4,9 +4,9 @@
   "private": true,
   "description": "Sistema Frontend POS de Alto Rendimiento para Restaurantes (Control de Stock y Producción en Cocina)",
   "type": "module",
-  "scripts": {
+"scripts": {
     "dev": "vite",
-    "build": "npx vite build",
+    "build": "npx vite",
     "preview": "vite preview",
     "test": "node test-auth.js",
     "start": "npx serve . -l 3000"
