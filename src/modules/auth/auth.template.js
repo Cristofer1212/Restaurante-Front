@@ -14,9 +14,16 @@ export const authHtml = `
   <!-- Barra Superior del Terminal Táctil -->
   <div class="terminal-topbar">
     <div class="terminal-brand-group">
+      <a href="#/" class="btn btn-ghost btn-back-home" title="Volver a la portada">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Inicio
+      </a>
       <span class="brand-badge">Square POS • Terminal Operativo</span>
-      <div id="connection-badge" class="badge badge-navy" title="Estado de Conexión con el Backend Java SE">
-        <span class="status-dot"></span> Comprobando Backend...
+      <div id="connection-badge" class="badge badge-navy" title="Estado de Conexión">
+        <span class="status-dot"></span> Conectando...
       </div>
     </div>
 
@@ -167,7 +174,7 @@ export const authHtml = `
       <div class="auth-footer-status">
         <div class="status-indicator-pill">
           <span id="backend-status-dot" class="status-dot"></span>
-          <span id="backend-status-text">Backend Java :8080</span>
+          <span id="backend-status-text">Sistema En Línea</span>
         </div>
         <span class="text-caption">Square POS v1.0</span>
       </div>

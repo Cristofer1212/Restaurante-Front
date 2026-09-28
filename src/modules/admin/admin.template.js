@@ -1,53 +1,142 @@
 /**
- * PLANTILLA HTML: VISTA DE ADMINISTRADOR (BACKOFFICE WEB)
+ * PLANTILLA HTML: DASHBOARD PRINCIPAL / BACKOFFICE WEB
  * 
- * Espacio de gestión central para el Administrador / Gerente:
- * - Creación de cuentas de colaboradores con asignación de Rol, DNI y PIN de 4 dígitos.
- * - Sincronización directa con PostgreSQL a través de POST /api/v1/auth/register.
- * - Acceso directo hacia la Terminal de Control Táctil (POS / KDS).
+ * Panel gerencial de control general inspirado en Square:
+ * - Métricas y estado del restaurante en tiempo real.
+ * - Formulario de gestión y alta de colaboradores en PostgreSQL (rol, DNI y PIN).
+ * - Monitoreo de estaciones operativas (Cocina KDS, Almacén, Caja).
+ * - Perfil de administrador y cierre de sesión seguro.
  */
 
 export const adminHtml = `
 <div class="admin-view animate-fade-in">
   
-  <!-- Barra de Navegación Superior del Backoffice -->
+  <!-- ====================================================================
+       1. BARRA SUPERIOR DEL BACKOFFICE (ADMIN NAVBAR)
+       ==================================================================== -->
   <header class="admin-header glass-panel">
     <div class="admin-header-brand">
+      <a href="#/" class="btn btn-ghost btn-back-home" title="Volver al inicio">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Inicio
+      </a>
       <span class="brand-badge">Square Backoffice</span>
       <div>
-        <h1 class="text-h2" style="margin: 0; line-height: 1.1;">Gestión de Personal & Roles</h1>
-        <span class="text-caption">Panel de Administración del Restaurante</span>
+        <h1 class="text-h2" style="margin: 0; line-height: 1.1;">Dashboard Principal</h1>
+        <span class="text-caption">Panel Gerencial del Dueño de Negocio</span>
       </div>
     </div>
 
     <div class="admin-header-actions">
-      <!-- Indicador de Salud del Backend Real -->
+      <!-- Indicador de Estado del Sistema -->
       <div id="admin-backend-status" class="badge badge-navy">
         <span class="status-dot"></span> Comprobando servidor...
       </div>
 
+      <!-- Perfil del Administrador Autenticado -->
+      <div class="admin-profile-pill" id="admin-user-pill">
+        <div class="admin-avatar">👑</div>
+        <div class="admin-profile-text">
+          <span class="admin-profile-name" id="admin-user-name">Administrador</span>
+          <span class="badge badge-brand" style="font-size: 0.68rem; padding: 0.1rem 0.45rem;">ADMIN</span>
+        </div>
+      </div>
+
       <!-- Enlace directo a la Terminal Táctil Operativa -->
-      <a href="#/terminal" class="btn btn-brand" id="btn-go-terminal">
+      <a href="#/terminal" class="btn btn-secondary" id="btn-go-terminal" title="Abrir terminal táctil para empleados">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
           <line x1="8" y1="21" x2="16" y2="21"></line>
           <line x1="12" y1="17" x2="12" y2="21"></line>
         </svg>
-        Ir a Terminal Táctil (POS / KDS) →
+        Terminal de Empleados
       </a>
+
+      <!-- Botón Cerrar Sesión Administrador -->
+      <button type="button" id="btn-admin-logout" class="btn btn-ghost" title="Cerrar sesión de administrador" style="color: var(--color-danger-text);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Salir
+      </button>
     </div>
   </header>
 
-  <!-- Contenido Principal del Backoffice -->
+  <!-- ====================================================================
+       2. RESUMEN GERENCIAL Y KPIS (DASHBOARD METRICS BAR)
+       ==================================================================== -->
+  <section class="admin-metrics-grid">
+    
+    <div class="kpi-card glass-panel">
+      <div class="kpi-header">
+        <span class="kpi-title">Personal Registrado</span>
+        <span class="kpi-icon">👥</span>
+      </div>
+      <div class="kpi-value" id="kpi-collaborators-count">0</div>
+      <div class="kpi-footer">
+        <span class="badge badge-success">Sistema Conectado</span>
+        <span class="text-caption">Cuentas con PIN activo</span>
+      </div>
+    </div>
+
+    <div class="kpi-card glass-panel">
+      <div class="kpi-header">
+        <span class="kpi-title">Estación Cocina (KDS)</span>
+        <span class="kpi-icon">🍳</span>
+      </div>
+      <div class="kpi-value" style="font-size: 1.4rem; color: #92400E;">Pantalla Fija</div>
+      <div class="kpi-footer">
+        <span class="badge badge-warning">Sin auto-bloqueo</span>
+        <a href="#/kitchen" style="color: var(--color-brand-primary); font-weight: 700; font-size: 0.8rem; text-decoration: underline;">Abrir KDS →</a>
+      </div>
+    </div>
+
+    <div class="kpi-card glass-panel">
+      <div class="kpi-header">
+        <span class="kpi-title">Estación Almacén</span>
+        <span class="kpi-icon">📦</span>
+      </div>
+      <div class="kpi-value" style="font-size: 1.4rem; color: #1E40AF;">Auto-Lock 90s</div>
+      <div class="kpi-footer">
+        <span class="badge badge-navy">Seguridad de insumos</span>
+        <a href="#/stock" style="color: var(--color-brand-primary); font-weight: 700; font-size: 0.8rem; text-decoration: underline;">Abrir Almacén →</a>
+      </div>
+    </div>
+
+    <div class="kpi-card glass-panel">
+      <div class="kpi-header">
+        <span class="kpi-title">Planilla & Asistencia</span>
+        <span class="kpi-icon">⏱️</span>
+      </div>
+      <div class="kpi-value" style="font-size: 1.4rem; color: var(--color-navy-900);">Planilla Perú</div>
+      <div class="kpi-footer">
+        <span class="badge badge-success">Clock-In / Out</span>
+        <span class="text-caption">Jornadas laborales</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ====================================================================
+       3. CONTENIDO PRINCIPAL: GESTIÓN DE PERSONAL & ROLES
+       ==================================================================== -->
   <main class="admin-content-grid">
     
-    <!-- COLUMNA IZQUIERDA: Formulario de Registro de Colaboradores -->
+    <!-- COLUMNA IZQUIERDA: Formulario para Gestionar y Crear Nuevos Empleados -->
     <section class="admin-card glass-panel">
       <div class="card-header">
         <div>
-          <span class="badge badge-brand" style="margin-bottom: 0.35rem;">Alta de Personal</span>
-          <h2 class="text-h2">Registrar Nuevo Colaborador</h2>
-          <p class="text-caption">Crea una cuenta operativa con PIN de 4 dígitos para acceso en terminales.</p>
+          <span class="badge badge-brand" style="margin-bottom: 0.35rem;">Gestión de Personal</span>
+          <h2 class="text-h2">Dar de Alta a un Colaborador</h2>
+          <p class="text-caption">
+            Crea cuentas para tu personal asignándoles su <strong>rol, DNI y PIN de 4 dígitos</strong>, 
+            los cuales se almacenarán de forma segura en el sistema.
+          </p>
         </div>
       </div>
 
@@ -59,13 +148,13 @@ export const adminHtml = `
             Rol en el Restaurante: <span class="required-star">*</span>
           </label>
           <select id="reg-rol" class="form-select" required>
-            <option value="3" selected>Cocina (KDS) — Pantalla fija permanente</option>
-            <option value="2">Almacenero — Control de insumos (Auto-bloqueo 90s)</option>
-            <option value="5">Cajero — Cobro y terminal TPV</option>
-            <option value="4">Mozo — Salón y atención de mesas</option>
-            <option value="1">Administrador — Gestión general y backoffice</option>
+            <option value="3" selected>Cocina (KDS) — Pantalla fija permanente sin suspensión</option>
+            <option value="2">Almacenero — Control de insumos (Auto-bloqueo preventivo 90s)</option>
+            <option value="5">Cajero — Cobro y facturación de cuentas (Bloqueo 120s)</option>
+            <option value="4">Mozo — Salón y atención en mesas (Bloqueo 120s)</option>
+            <option value="1">Administrador — Gestión general y acceso a este Backoffice</option>
           </select>
-          <div id="role-hint" class="text-caption" style="margin-top: 0.35rem; color: var(--color-navy-500);">
+          <div id="role-hint" class="text-caption" style="margin-top: 0.35rem; color: var(--color-navy-600);">
             💡 <strong>Comportamiento UI:</strong> Pantalla fija permanente sin suspensión para despacho ágil de comandas.
           </div>
         </div>
@@ -81,7 +170,7 @@ export const adminHtml = `
             </select>
           </div>
 
-          <!-- Número de Documento -->
+          <!-- Número de Documento (DNI) -->
           <div class="form-group">
             <label for="reg-num-doc" class="form-label">
               N° de Documento (DNI): <span class="required-star">*</span>
@@ -101,7 +190,7 @@ export const adminHtml = `
           <!-- Nombre -->
           <div class="form-group">
             <label for="reg-nombre" class="form-label">
-              Nombres: <span class="required-star">*</span>
+              Nombres del Empleado: <span class="required-star">*</span>
             </label>
             <input 
               type="text" 
@@ -115,7 +204,7 @@ export const adminHtml = `
           <!-- Apellido -->
           <div class="form-group">
             <label for="reg-apellido" class="form-label">
-              Apellidos: <span class="required-star">*</span>
+              Apellidos del Empleado: <span class="required-star">*</span>
             </label>
             <input 
               type="text" 
@@ -145,7 +234,7 @@ export const adminHtml = `
           <!-- PIN de Acceso (4 Dígitos) -->
           <div class="form-group">
             <label for="reg-pin" class="form-label">
-              PIN de Acceso (4 Dígitos): <span class="required-star">*</span>
+              PIN de Seguridad (4 Dígitos): <span class="required-star">*</span>
             </label>
             <div style="position: relative;">
               <input 
@@ -155,7 +244,7 @@ export const adminHtml = `
                 placeholder="4 dígitos numéricos" 
                 maxlength="4" 
                 pattern="\\d{4}" 
-                style="letter-spacing: 0.3em; font-size: 1.15rem;"
+                style="letter-spacing: 0.35em; font-size: 1.15rem;"
                 required
               />
               <button type="button" id="btn-toggle-pin-visibility" class="btn-ghost" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 4px;" title="Ver PIN">
@@ -173,22 +262,22 @@ export const adminHtml = `
               <line x1="20" y1="8" x2="20" y2="14"></line>
               <line x1="23" y1="11" x2="17" y2="11"></line>
             </svg>
-            Guardar Colaborador en PostgreSQL
+            Guardar Empleado
           </button>
         </div>
 
       </form>
     </section>
 
-    <!-- COLUMNA DERECHA: Colaboradores del Restaurante y Estado Operativo -->
+    <!-- COLUMNA DERECHA: Lista de Colaboradores y Monitoreo de Estaciones -->
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       
       <!-- Lista de Colaboradores Registrados -->
       <section class="admin-card glass-panel" style="flex: 1;">
         <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
           <div>
-            <h3 class="text-h3">Equipo Registrado</h3>
-            <span class="text-caption">Cuentas habilitadas para inicio de sesión táctil</span>
+            <h3 class="text-h3">Equipo Registrado en el Restaurante</h3>
+            <span class="text-caption">Empleados autorizados para ingresar en la Terminal Táctil</span>
           </div>
           <button type="button" id="btn-refresh-team" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;">
             ↻ Actualizar
@@ -208,13 +297,17 @@ export const adminHtml = `
           🏢 Arquitectura Multiusuario Tipo Square
         </h4>
         <p style="font-size: 0.85rem; color: var(--color-navy-300); line-height: 1.5; margin-bottom: 1rem;">
-          Este panel web es de uso gerencial para registrar personal. Los colaboradores operativos 
-          (cocineros, almaceneros y cajeros) <strong>no ven formularios de registro</strong>; 
-          ellos acceden exclusivamente desde la <strong>Terminal Táctil</strong> usando su PIN de 4 dígitos.
+          Como <strong>Administrador / Dueño</strong>, controlas este Dashboard central. 
+          Tus empleados <strong>no acceden a esta vista</strong>; ellos usan el botón 
+          <a href="#/terminal" style="color: var(--color-brand-primary); font-weight: 700; text-decoration: underline;">"Soy empleado"</a> 
+          desde la página inicial para iniciar sesión con su DNI y PIN en la <strong>Terminal de Personal</strong>.
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="#/terminal" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); color: #FFFFFF; border-color: rgba(255,255,255,0.2); font-size: 0.85rem; min-height: 40px;">
-            Probar Terminal Táctil →
+            Abrir Terminal de Personal →
+          </a>
+          <a href="#/kitchen" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); color: #FFFFFF; border-color: rgba(255,255,255,0.2); font-size: 0.85rem; min-height: 40px;">
+            Ver Pantalla KDS Cocina →
           </a>
         </div>
       </section>

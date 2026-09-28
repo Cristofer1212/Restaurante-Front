@@ -1,0 +1,352 @@
+/**
+ * PLANTILLA HTML: LANDING PAGE CORPORATIVA (PANTALLA INICIAL)
+ * 
+ * Flujo de navegación multiusuario inspirado en Square:
+ * - Botón "Empezar": Registro de cuenta para nuevos Administradores / Dueños.
+ * - Botón "Soy empleado": Acceso directo a la Terminal de Personal (DNI + PIN).
+ */
+
+export const landingHtml = `
+<div class="landing-view animate-fade-in">
+
+  <!-- ====================================================================
+       1. BARRA DE NAVEGACIÓN SUPERIOR (NAVBAR)
+       ==================================================================== -->
+  <header class="landing-navbar">
+    <div class="landing-nav-container">
+      
+      <!-- Logotipo / Marca Corporativa -->
+      <a href="#/" class="landing-brand">
+        <div class="landing-brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="landing-brand-text">
+          <span class="landing-brand-name">Square Gastro</span>
+          <span class="landing-brand-tag">POS & KDS System</span>
+        </div>
+      </a>
+
+      <!-- Enlaces de Navegación y Conexión -->
+      <nav class="landing-nav-links">
+        <a href="#features" class="landing-nav-link">Módulos</a>
+        <a href="#architecture" class="landing-nav-link">Arquitectura</a>
+        <div id="landing-backend-badge" class="badge badge-navy">
+          <span class="status-dot"></span> Verificando conexión...
+        </div>
+      </nav>
+
+      <!-- Acciones de Cabecera -->
+      <div class="landing-nav-actions">
+        <!-- Botón Soy Empleado (Acceso Rápido a Terminal) -->
+        <a href="#/terminal" class="btn btn-secondary btn-nav-employee" id="nav-btn-employee">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Soy empleado
+        </a>
+
+        <!-- Botón Empezar (Registro de Administrador) -->
+        <a href="#/register" class="btn btn-brand btn-nav-start" id="nav-btn-start">
+          Empezar
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Banner de Sesión Activa (visible si el usuario ya inició sesión previamente) -->
+  <div id="landing-active-session-banner" class="active-session-banner" style="display: none;">
+    <div class="session-banner-content">
+      <span class="session-banner-icon">👤</span>
+      <div>
+        <strong>Sesión activa detectada:</strong>
+        <span id="landing-session-user-name">Usuario</span> 
+        (<span id="landing-session-user-role">ROL</span>)
+      </div>
+    </div>
+    <div class="session-banner-actions">
+      <a href="#/admin" id="landing-session-resume-link" class="btn btn-brand btn-sm">
+        Continuar al Panel →
+      </a>
+      <button type="button" id="landing-session-logout-btn" class="btn btn-ghost btn-sm">
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       2. SECCIÓN HERO (PORTADA PRINCIPAL Y CTAS CLAVE)
+       ==================================================================== -->
+  <section class="landing-hero-section">
+    <div class="landing-hero-container">
+      
+      <div class="hero-badge-wrap">
+        <span class="badge badge-brand">
+          ✨ Arquitectura Multiusuario Tipo Square • Alta Disponibilidad
+        </span>
+      </div>
+
+      <h1 class="landing-hero-title">
+        El sistema operativo integral para tu restaurante
+      </h1>
+
+      <p class="landing-hero-subtitle">
+        Una plataforma unificada para el <strong>Dueño del Negocio</strong> y su <strong>Equipo Operativo</strong>. 
+        Controla cocina en tiempo real, gestión de inventario, punto de venta y asistencia laboral con la máxima velocidad.
+      </p>
+
+      <!-- Los Dos Botones Principales (CTAs Requeridos) -->
+      <div class="landing-hero-ctas">
+        
+        <!-- CTA 1: Empezar -> Registro de Administrador / Dueño -->
+        <a href="#/register" class="btn btn-brand btn-cta-main" id="hero-btn-start">
+          <span class="cta-label">Empezar</span>
+          <span class="cta-desc">Crear cuenta de Administrador</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- CTA 2: Soy empleado -> Terminal de Personal (DNI + PIN) -->
+        <a href="#/terminal" class="btn btn-secondary btn-cta-secondary" id="hero-btn-employee">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <div>
+            <span class="cta-label">Soy empleado</span>
+            <span class="cta-desc">Terminal táctil con DNI y PIN</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Enlace para Administradores Existentes -->
+      <div class="landing-login-hint">
+        ¿Ya tienes cuenta de Administrador? 
+        <a href="#/register" class="landing-link-highlight" id="link-admin-login">Iniciar sesión aquí →</a>
+      </div>
+
+      <!-- Previsualización de Dispositivos / Estaciones de Trabajo -->
+      <div class="landing-preview-grid">
+        <div class="preview-card preview-backoffice">
+          <div class="preview-tag">Dueño / Gerencia</div>
+          <div class="preview-title">Dashboard Backoffice</div>
+          <p>Métricas clave, configuración general y alta de colaboradores en el sistema.</p>
+        </div>
+        <div class="preview-card preview-kds">
+          <div class="preview-tag">Jefe de Cocina</div>
+          <div class="preview-title">KDS en Tiempo Real</div>
+          <p>Pantalla fija permanente para despacho de comandas sin interrupciones.</p>
+        </div>
+        <div class="preview-card preview-terminal">
+          <div class="preview-tag">Mozos & Cajeros</div>
+          <div class="preview-title">Terminal Táctil</div>
+          <p>Login ágil con PIN de 4 dígitos y marcación automática de asistencia.</p>
+        </div>
+        <div class="preview-card preview-stock">
+          <div class="preview-tag">Almacenero</div>
+          <div class="preview-title">Control de Insumos</div>
+          <p>Seguridad reforzada con auto-bloqueo preventivo a los 90 segundos.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       3. SECCIÓN DE ARQUITECTURA DE FLUJO (SQUARE FLOW EXPLAINED)
+       ==================================================================== -->
+  <section id="architecture" class="landing-flow-section">
+    <div class="landing-section-container">
+      
+      <div class="section-header-center">
+        <span class="badge badge-brand">Flujo de Navegación</span>
+        <h2 class="text-h1">Diseñado para cada rol del restaurante</h2>
+        <p class="text-body" style="max-width: 640px; margin: 0.5rem auto 0;">
+          Inspirado en la separación de responsabilidades de Square: la gerencia gestiona desde la web, 
+          mientras que el personal operativo interactúa mediante terminales táctiles con PIN.
+        </p>
+      </div>
+
+      <div class="flow-columns-grid">
+        
+        <!-- Tarjeta Flujo Dueño -->
+        <div class="flow-card glass-panel">
+          <div class="flow-card-icon admin-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <polyline points="17 11 19 13 23 9"></polyline>
+            </svg>
+          </div>
+          <span class="badge badge-brand">Flujo 1 • Administrador / Dueño</span>
+          <h3 class="text-h2" style="margin-top: 0.75rem;">1. Clic en "Empezar"</h3>
+          <p class="text-body">
+            El dueño o administrador crea su cuenta corporativa en el sistema.
+          </p>
+          <ul class="flow-steps-list">
+            <li><strong>Registro directo:</strong> Ingreso de DNI, usuario y PIN maestro de 4 dígitos.</li>
+            <li><strong>Autenticación automática:</strong> Inicio de sesión inmediato sin fricciones.</li>
+            <li><strong>Dashboard Backoffice:</strong> Acceso al panel gerencial con métricas y configuraciones.</li>
+            <li><strong>Alta de colaboradores:</strong> Crear empleados asignándoles rol, DNI y PIN de acceso.</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="#/register" class="btn btn-brand" style="width: 100%;">
+              Crear Cuenta de Dueño →
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta Flujo Empleados -->
+        <div class="flow-card glass-panel">
+          <div class="flow-card-icon employee-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <span class="badge badge-navy">Flujo 2 • Colaboradores Operativos</span>
+          <h3 class="text-h2" style="margin-top: 0.75rem;">2. Clic en "Soy empleado"</h3>
+          <p class="text-body">
+            Los operarios no completan formularios de registro; acceden directamente a la terminal de trabajo.
+          </p>
+          <ul class="flow-steps-list">
+            <li><strong>Terminal de Personal:</strong> Pantalla táctil optimizada para dedos y rapidez.</li>
+            <li><strong>Login con DNI & PIN:</strong> Validación ágil de 4 dígitos en el teclado numérico.</li>
+            <li><strong>Control de Asistencia:</strong> Marcación de Clock-In / Clock-Out para Planilla Perú.</li>
+            <li><strong>Enrutamiento automático:</strong> Redirección instantánea a su estación (Cocina KDS, Almacén o Caja).</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="#/terminal" class="btn btn-secondary" style="width: 100%;">
+              Abrir Terminal de Personal →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4. SECCIÓN DE CARACTERÍSTICAS Y MÓDULOS DEL POS
+       ==================================================================== -->
+  <section id="features" class="landing-features-section">
+    <div class="landing-section-container">
+      
+      <div class="section-header-center">
+        <span class="badge badge-brand">Potencia Operativa</span>
+        <h2 class="text-h1">Todo lo que tu restaurante necesita</h2>
+      </div>
+
+      <div class="features-grid">
+        
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">⚡</div>
+          <h3 class="text-h3">Terminal de Personal Táctil</h3>
+          <p class="text-caption">
+            Teclado numérico en pantalla de alta ergonomía. Permite a los colaboradores iniciar turno y autenticarse en segundos.
+          </p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">🍳</div>
+          <h3 class="text-h3">Cocina Digital (KDS)</h3>
+          <p class="text-caption">
+            Pantalla fija permanente (fixed_screen). No sufre bloqueos por inactividad para garantizar el despacho fluido de platos.
+          </p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">📦</div>
+          <h3 class="text-h3">Control de Insumos y Stock</h3>
+          <p class="text-caption">
+            Auto-bloqueo de seguridad a los 90 segundos para resguardar las operaciones de almacén y materias primas.
+          </p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">⏱️</div>
+          <h3 class="text-h3">Marcación de Asistencia (Planilla)</h3>
+          <p class="text-caption">
+            Registro automático de marcación de entrada y salida para el control de jornadas conforme a la normativa laboral.
+          </p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">💾</div>
+          <h3 class="text-h3">Almacenamiento Confiable</h3>
+          <p class="text-caption">
+            Información centralizada y respaldada en tiempo real para garantizar la disponibilidad continua de su restaurante.
+          </p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="text-h3">Máxima Seguridad y Protección</h3>
+          <p class="text-caption">
+            Protocolos de autenticación blindada y control de accesos por roles para proteger las operaciones de tu negocio.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. PIE DE PÁGINA (FOOTER CORPORATIVO)
+       ==================================================================== -->
+  <footer class="landing-footer">
+    <div class="landing-footer-container">
+      <div class="footer-brand-col">
+        <div class="landing-brand">
+          <div class="landing-brand-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <span class="landing-brand-name">Square Gastro POS</span>
+        </div>
+        <p class="text-caption" style="margin-top: 0.5rem; max-width: 320px;">
+          Sistema Integral de Alto Rendimiento para Restaurantes. Control de Stock y Producción en Cocina.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="footer-col-title">Accesos Rápidos</span>
+        <a href="#/register">Registro de Administrador ("Empezar")</a>
+        <a href="#/terminal">Terminal de Personal ("Soy empleado")</a>
+        <a href="#/admin">Dashboard Backoffice</a>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="footer-col-title">Estaciones</span>
+        <a href="#/kitchen">Cocina KDS</a>
+        <a href="#/stock">Almacén e Insumos</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span class="text-caption">Square Gastro POS & KDS • Sistema de Gestión Gastronómica</span>
+      <span class="text-caption">Todos los derechos reservados</span>
+    </div>
+  </footer>
+
+</div>
+`;

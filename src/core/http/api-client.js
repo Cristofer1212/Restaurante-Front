@@ -63,11 +63,11 @@ class ApiClient {
         throw error;
       }
 
-      // Error de red cuando el servidor Java está apagado o inalcanzable
+      // Error de red cuando el servidor está apagado o inalcanzable
       throw new HttpError({
         status: 0,
         error: 'Conexión Rechazada',
-        message: `No se pudo conectar con el servidor backend en ${this.baseUrl}. Verifique que el servicio Java (RestaurantApplication) esté ejecutándose.`,
+        message: 'No se pudo conectar con el servidor. Verifique su conexión de red o intente nuevamente más tarde.',
       });
     }
   }

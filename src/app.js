@@ -2,9 +2,11 @@
  * BOOTSTRAPPER PRINCIPAL DE LA APLICACIÓN (app.js)
  * 
  * Orquesta módulos, enrutador cliente, seguridad y ciclo de vida del POS.
- * Rutas separadas tipo Square:
- * - /admin: Backoffice Web para Administradores (Gestión y alta de personal)
- * - /terminal: Terminal de Control Táctil (PIN Pad y Asistencia para operarios)
+ * Arquitectura multiusuario tipo Square:
+ * - / (Raíz): Landing Page corporativa con CTAs "Empezar" y "Soy empleado"
+ * - /register: Registro y login de Administrador / Dueño de negocio
+ * - /admin: Dashboard Principal / Backoffice gerencial y gestión de colaboradores
+ * - /terminal: Terminal de Control Táctil (DNI y PIN de 4 dígitos)
  * - /kitchen: Comandero Digital KDS (Cocina)
  * - /stock: Control de Insumos y Stock (Almacén)
  */
@@ -15,6 +17,8 @@ import { inactivityTimer } from './core/security/inactivity-timer.js';
 import { sessionStore } from './core/storage/session-store.js';
 import { Toast } from './shared/components/toast.component.js';
 
+import { landingController } from './modules/landing/landing.controller.js';
+import { registerController } from './modules/auth/register.controller.js';
 import { authController } from './modules/auth/auth.controller.js';
 import { adminController } from './modules/admin/admin.controller.js';
 import { kitchenController } from './modules/kitchen/kitchen.controller.js';
@@ -28,20 +32,33 @@ class Application {
   async init() {
     if (this.isInitialized) return;
 
-    console.log('%c[Square Gastro POS & KDS] Iniciando Sistema de Alto Rendimiento', 'color: #E15A2B; font-weight: bold; font-size: 14px;');
+    console.log('%c[Square Gastro POS & KDS] Iniciando Sistema Multiusuario', 'color: #E15A2B; font-weight: bold; font-size: 14px;');
 
     // 1. Configurar escuchadores globales de eventos del EventBus
     this._setupEventSubscriptions();
 
     // 2. Registrar módulos en el enrutador cliente
 
-    // Vista de Administrador: Backoffice Web
-    router.register('/admin', {
-      component: adminController,
-      requiresAuth: false, // Accesible para configuración de colaboradores
+    // Ruta Raíz: Landing Page Corporativa
+    router.register('/', {
+      component: landingController,
+      requiresAuth: false,
     });
 
-    // Vista de Terminal de Control: Pantalla táctil de acceso rápido
+    // Flujo Administrador / Dueño: Registro de cuenta ("Empezar")
+    router.register('/register', {
+      component: registerController,
+      requiresAuth: false,
+    });
+
+    // Flujo Administrador / Dueño: Dashboard Principal / Backoffice
+    router.register('/admin', {
+      component: adminController,
+      requiresAuth: true,
+      allowedRoles: ['ADMIN'],
+    });
+
+    // Flujo Empleado: Terminal de Personal Táctil ("Soy empleado")
     router.register('/terminal', {
       component: authController,
       requiresAuth: false,
@@ -57,7 +74,7 @@ class Application {
     router.register('/kitchen', {
       component: kitchenController,
       requiresAuth: true,
-      allowedRoles: ['COCINA', 'ADMIN', 'CAJERO'],
+      allowedRoles: ['COCINA', 'ADMIN', 'CAJERO', 'MOZO'],
     });
 
     router.register('/stock', {
@@ -90,7 +107,7 @@ class Application {
     // Al cerrar sesión explícitamente
     eventBus.on(AppEvents.AUTH_LOGOUT, () => {
       Toast.info('Sesión cerrada correctamente.', 'Desconectado');
-      router.navigate('/terminal');
+      router.navigate('/');
     });
 
     // Notificaciones de marcación de asistencia

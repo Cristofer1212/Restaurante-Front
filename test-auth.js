@@ -120,6 +120,25 @@ async function runTests() {
   }
   console.log('✓ PASS: ApiClient configurado estrictamente hacia', apiClient.baseUrl);
 
+  // 6. Validar Registro de Administrador / Dueño (rolId: 1)
+  console.log('\n[6] Verificando Registro de Administrador / Dueño (Square Flow):');
+  const adminRegReq = new RegisterUserRequest({
+    rolId: 1, // ADMIN
+    tipoDocumento: 'DNI',
+    numeroDocumento: '10293847',
+    nombre: 'Roberto',
+    apellido: 'Gómez',
+    nombreUsuario: 'roberto.gerente',
+    pin: '9876',
+  });
+  adminRegReq.validate();
+  const jsonAdmin = adminRegReq.toJSON();
+  if (jsonAdmin.rolId !== 1 || jsonAdmin.pin !== '9876' || jsonAdmin.nombreUsuario !== 'roberto.gerente') {
+    console.error('FAIL: Serialización incorrecta de RegisterUserRequest para ADMIN');
+    process.exit(1);
+  }
+  console.log('✓ PASS: RegisterUserRequest para Administrador / Dueño validó y serializó con rolId: 1');
+
   // Limpiar sesión de prueba
   sessionStore.clearSession();
 

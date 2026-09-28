@@ -43,6 +43,99 @@
   flex-wrap: wrap;
 }
 
+/* Perfil de Administrador */
+.admin-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-full);
+}
+
+.admin-avatar {
+  font-size: 1.1rem;
+}
+
+.admin-profile-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.admin-profile-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-navy-900);
+}
+
+/* ==========================================================================
+   MÉTRICAS GERENCIALES / KPI CARDS (DASHBOARD)
+   ========================================================================== */
+.admin-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .admin-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .admin-metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.kpi-card {
+  padding: 1.25rem 1.5rem;
+  background: #FFFFFF;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color-light);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-navy-500);
+}
+
+.kpi-icon {
+  font-size: 1.35rem;
+}
+
+.kpi-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--color-navy-900);
+  line-height: 1.1;
+  font-family: var(--font-family-mono);
+}
+
+.kpi-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+}
+
 /* Grilla de Contenido Principal */
 .admin-content-grid {
   display: grid;

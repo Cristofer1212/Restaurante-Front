@@ -9,7 +9,7 @@ export const ENV = {
   // URL base adaptada para Vite y Render
   API_BASE_URL: (typeof window !== 'undefined' && window.RESTAURANT_API_URL)
     ? window.RESTAURANT_API_URL
-    : (import.meta.env.VITE_API_URL || 'http://localhost:8080'),
+    : ((typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL) || (typeof process !== 'undefined' && process.env && process.env.VITE_API_URL) || 'http://localhost:8080'),
 
   // Rutas simétricas a AuthHttpHandler y AsistenciaHttpHandler
   ENDPOINTS: {
