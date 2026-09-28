@@ -33,10 +33,10 @@ export const kitchenHtml = `
     </div>
   </header>
 
-  <!-- Banner de configuración de pantalla según RoleUiMetadata -->
+  <!-- Banner de configuración de pantalla -->
   <div class="kds-metadata-bar">
     <span>🖥️ <strong>Modo KDS Activo:</strong> Pantalla fija permanente (Sin auto-bloqueo para despacho continuo).</span>
-    <span class="badge badge-navy">Latencia: < 15ms</span>
+    <span class="badge badge-navy">Sincronizado</span>
   </div>
 
   <!-- Tablero de Comandas y Pedidos en Producción -->

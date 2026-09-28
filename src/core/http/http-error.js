@@ -31,7 +31,7 @@ export class HttpError extends Error {
     return new HttpError({
       status: 0,
       error: 'Error de Conexión',
-      message: 'No se pudo contactar con el servidor POS. Verifique que el backend esté encendido.',
+      message: 'No se pudo conectar con el servidor. Verifique su conexión de red o intente más tarde.',
     });
   }
 }

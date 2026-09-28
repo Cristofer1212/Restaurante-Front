@@ -66,17 +66,17 @@ export class AuthController {
       if (isOnline) {
         if (badge) {
           badge.className = 'badge badge-success';
-          badge.innerHTML = '<span class="status-dot online"></span> Backend :8080 En Línea';
+          badge.innerHTML = '<span class="status-dot online"></span> En Línea';
         }
         if (dot) dot.className = 'status-dot online';
-        if (text) text.textContent = 'Backend Java SE :8080 Conectado';
+        if (text) text.textContent = 'Sistema En Línea';
       } else {
         if (badge) {
           badge.className = 'badge badge-danger';
-          badge.innerHTML = '<span class="status-dot error"></span> Servidor Desconectado';
+          badge.innerHTML = '<span class="status-dot error"></span> Sin Conexión';
         }
         if (dot) dot.className = 'status-dot error';
-        if (text) text.textContent = 'Sin conexión con :8080';
+        if (text) text.textContent = 'Sin Conexión';
       }
     };
 
@@ -117,7 +117,7 @@ export class AuthController {
         <div style="grid-column: 1 / -1; padding: 1rem; background: var(--color-bg-subtle); border-radius: var(--border-radius-md); font-size: 0.88rem; color: var(--color-navy-600);">
           <strong>ℹ️ Sin colaboradores guardados localmente:</strong> Ingrese su DNI abajo o diríjase a 
           <a href="#/admin" style="color: var(--color-brand-primary); font-weight: 700; text-decoration: underline;">Backoffice Administrador</a> 
-          para registrar cuentas en PostgreSQL.
+          para registrar cuentas de personal.
         </div>
       `;
     }

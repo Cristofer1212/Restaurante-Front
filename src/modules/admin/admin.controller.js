@@ -1,15 +1,18 @@
 /**
- * CONTROLADOR: VISTA DE ADMINISTRADOR (BACKOFFICE WEB)
+ * CONTROLADOR: DASHBOARD PRINCIPAL / BACKOFFICE WEB
  * 
- * Gestiona el formulario de alta de colaboradores en PostgreSQL mediante
- * el endpoint backend POST /api/v1/auth/register.
+ * Gestiona:
+ * - Panel gerencial con métricas y estado del restaurante.
+ * - Formulario de alta y creación de colaboradores en PostgreSQL (POST /api/v1/auth/register).
+ * - Perfil de administrador y cierre de sesión seguro.
  */
 
 import { adminHtml } from './admin.template.js';
 import { authService } from '../auth/auth.service.js';
+import { sessionStore } from '../../core/storage/session-store.js';
+import { router } from '../../core/router/router.js';
 import { Toast } from '../../shared/components/toast.component.js';
 import { audioFeedback } from '../../shared/utils/dom.js';
-import { ENV } from '../../core/config/env.js';
 
 export class AdminController {
   constructor() {
@@ -21,11 +24,13 @@ export class AdminController {
     this.container = container;
     this.container.innerHTML = adminHtml;
 
+    this._initUserProfile();
     this._initHealthCheck();
     this._initForm();
     this._initRoleHints();
     this._initPinToggle();
     this._renderCollaboratorsList();
+    this._initLogout();
 
     const refreshBtn = this.container.querySelector('#btn-refresh-team');
     if (refreshBtn) {
@@ -37,6 +42,25 @@ export class AdminController {
     }
   }
 
+  _initUserProfile() {
+    const user = sessionStore.getUser();
+    const nameEl = this.container.querySelector('#admin-user-name');
+    if (user && nameEl) {
+      nameEl.textContent = user.nombreCompleto || user.nombreUsuario || 'Administrador';
+    }
+  }
+
+  _initLogout() {
+    const logoutBtn = this.container.querySelector('#btn-admin-logout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        authService.logout();
+        Toast.info('Sesión de Administrador cerrada', 'Desconectado');
+        router.navigate('/');
+      });
+    }
+  }
+
   async _initHealthCheck() {
     const statusEl = this.container.querySelector('#admin-backend-status');
     if (!statusEl) return;
@@ -44,10 +68,10 @@ export class AdminController {
     const isHealthy = await authService.checkBackendHealth();
     if (isHealthy) {
       statusEl.className = 'badge badge-success';
-      statusEl.innerHTML = '<span class="status-dot online"></span> Backend Java :8080 Conectado';
+      statusEl.innerHTML = '<span class="status-dot online"></span> Sistema Conectado';
     } else {
       statusEl.className = 'badge badge-danger';
-      statusEl.innerHTML = '<span class="status-dot error"></span> Backend Desconectado (:8080)';
+      statusEl.innerHTML = '<span class="status-dot error"></span> Sin Conexión';
     }
   }
 
@@ -65,6 +89,12 @@ export class AdminController {
       const apellido = this.container.querySelector('#reg-apellido').value.trim();
       const nombreUsuario = this.container.querySelector('#reg-username').value.trim();
       const pin = this.container.querySelector('#reg-pin').value.trim();
+
+      if (!nombre || !apellido || !numeroDocumento || !nombreUsuario) {
+        audioFeedback.playError();
+        Toast.warning('Complete todos los campos obligatorios del colaborador (*)', 'Campos Faltantes');
+        return;
+      }
 
       if (!/^\d{4}$/.test(pin)) {
         audioFeedback.playError();
@@ -84,21 +114,23 @@ export class AdminController {
 
       try {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Enviando a PostgreSQL...';
+        submitBtn.innerHTML = `
+          <span class="status-dot online"></span> Guardando colaborador...
+        `;
 
         const createdUser = await authService.register(payload);
 
         audioFeedback.playSuccess();
         Toast.success(
-          `Colaborador ${createdUser.nombreCompleto} registrado con éxito en la base de datos`,
-          'Registro Exitoso'
+          `Colaborador ${createdUser.nombreCompleto} registrado con éxito`,
+          'Empleado Registrado'
         );
 
         form.reset();
         this._renderCollaboratorsList();
       } catch (err) {
         audioFeedback.playError();
-        Toast.danger(err.message || 'Error al registrar colaborador en el backend', 'Error de Registro');
+        Toast.danger(err.message || 'Error al registrar colaborador', 'Error de Registro');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
@@ -108,7 +140,7 @@ export class AdminController {
             <line x1="20" y1="8" x2="20" y2="14"></line>
             <line x1="23" y1="11" x2="17" y2="11"></line>
           </svg>
-          Guardar Colaborador en PostgreSQL
+          Guardar Empleado
         `;
       }
     });
@@ -144,18 +176,24 @@ export class AdminController {
     const pinInput = this.container.querySelector('#reg-pin');
     const toggleBtn = this.container.querySelector('#btn-toggle-pin-visibility');
 
-    toggleBtn.addEventListener('click', () => {
-      const isPwd = pinInput.type === 'password';
-      pinInput.type = isPwd ? 'text' : 'password';
-      toggleBtn.textContent = isPwd ? '🔒' : '👁️';
-    });
+    if (toggleBtn && pinInput) {
+      toggleBtn.addEventListener('click', () => {
+        const isPwd = pinInput.type === 'password';
+        pinInput.type = isPwd ? 'text' : 'password';
+        toggleBtn.textContent = isPwd ? '🔒' : '👁️';
+      });
+    }
   }
 
   _renderCollaboratorsList() {
     const listEl = this.container.querySelector('#collaborators-list');
+    const countEl = this.container.querySelector('#kpi-collaborators-count');
     if (!listEl) return;
 
     const list = authService.getRegisteredCollaborators();
+    if (countEl) {
+      countEl.textContent = String(list.length);
+    }
 
     if (list.length === 0) {
       listEl.innerHTML = `
@@ -180,7 +218,7 @@ export class AdminController {
           </div>
           <div class="collab-actions">
             <span class="operator-role-pill ${rolePillClass}">${roleName}</span>
-            <button type="button" class="btn-copy-dni" data-dni="${u.numeroDocumento}" title="Copiar DNI">
+            <button type="button" class="btn-copy-dni" data-dni="${u.numeroDocumento}" title="Copiar DNI para Terminal">
               Copiar DNI
             </button>
           </div>
@@ -193,7 +231,7 @@ export class AdminController {
       btn.addEventListener('click', () => {
         const dni = btn.dataset.dni;
         navigator.clipboard?.writeText(dni);
-        Toast.info(`DNI ${dni} copiado al portapapeles. Listo para ingresar en la Terminal Táctil.`);
+        Toast.info(`DNI ${dni} copiado. Listo para ingresar en la Terminal Táctil.`);
       });
     });
   }
