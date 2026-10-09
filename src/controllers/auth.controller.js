@@ -14,7 +14,7 @@ import { AttendanceModalComponent } from '../components/attendance-modal.compone
 import { Toast } from '../components/toast.component.js';
 import { audioFeedback } from '../utils/dom.js';
 import { router } from '../core/router/router.js';
-import { authHtml } from '../../pages/auth.template.js';
+import { authHtml } from '../views/auth.template.js';
 
 export class AuthController {
   constructor() {
