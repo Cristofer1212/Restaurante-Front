@@ -4,7 +4,7 @@
  * Alertas visuales no invasivas para pantallas de cocina y POS.
  */
 
-import { eventBus, AppEvents } from '../../core/events/event-bus.js';
+import { eventBus, AppEvents } from '../core/events/event-bus.js';
 import { DOM } from '../utils/dom.js';
 
 class ToastManager {

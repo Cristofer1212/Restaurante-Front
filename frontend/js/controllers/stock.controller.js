@@ -2,12 +2,12 @@
  * CONTROLADOR DE CONTROL DE STOCK (Almacén)
  */
 
-import { stockHtml } from './stock.template.js';
-import { sessionStore } from '../../core/storage/session-store.js';
-import { router } from '../../core/router/router.js';
-import { AttendanceModalComponent } from '../auth/components/attendance-modal.component.js';
-import { authHtml } from '../auth/auth.template.js';
-import { DOM } from '../../shared/utils/dom.js';
+import { stockHtml } from '../../pages/stock.template.js';
+import { sessionStore } from '../core/storage/session-store.js';
+import { router } from '../core/router/router.js';
+import { AttendanceModalComponent } from '../components/attendance-modal.component.js';
+import { authHtml } from '../../pages/auth.template.js';
+import { DOM } from '../utils/dom.js';
 
 export class StockController {
   constructor() {

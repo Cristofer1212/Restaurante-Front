@@ -7,12 +7,12 @@
  * - Comunicación 100% real por HTTP con el backend en Java SE (http://localhost:8080)
  */
 
-import { apiClient } from '../../core/http/api-client.js';
-import { ENV } from '../../core/config/env.js';
-import { sessionStore } from '../../core/storage/session-store.js';
-import { inactivityTimer } from '../../core/security/inactivity-timer.js';
-import { eventBus, AppEvents } from '../../core/events/event-bus.js';
-import { LoginPinRequest, ClockRequest, RegisterUserRequest } from './models/auth.models.js';
+import { apiClient } from '../core/http/api-client.js';
+import { ENV } from '../core/config/env.js';
+import { sessionStore } from '../core/storage/session-store.js';
+import { inactivityTimer } from '../core/security/inactivity-timer.js';
+import { eventBus, AppEvents } from '../core/events/event-bus.js';
+import { LoginPinRequest, ClockRequest, RegisterUserRequest } from '../models/auth.models.js';
 
 export class AuthService {
   /**

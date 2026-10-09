@@ -8,11 +8,11 @@
  * - Reconocimiento de sesión activa para reanudar turnos.
  */
 
-import { landingHtml } from './landing.template.js';
-import { authService } from '../auth/auth.service.js';
-import { sessionStore } from '../../core/storage/session-store.js';
-import { router } from '../../core/router/router.js';
-import { Toast } from '../../shared/components/toast.component.js';
+import { landingHtml } from '../../pages/landing.template.js';
+import { authService } from '../services/auth.service.js';
+import { sessionStore } from '../core/storage/session-store.js';
+import { router } from '../core/router/router.js';
+import { Toast } from '../components/toast.component.js';
 
 export class LandingController {
   constructor() {

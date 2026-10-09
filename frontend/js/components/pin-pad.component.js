@@ -5,7 +5,7 @@
  * y feedback háptico/acústico en milisegundos.
  */
 
-import { audioFeedback } from '../../../shared/utils/dom.js';
+import { audioFeedback } from '../utils/dom.js';
 
 export class PinPadComponent {
   constructor({ container, onComplete }) {

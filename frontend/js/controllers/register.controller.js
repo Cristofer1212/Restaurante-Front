@@ -8,11 +8,11 @@
  * 4. Es redirigido al Dashboard Principal / Backoffice (#/admin).
  */
 
-import { registerHtml } from './register.template.js';
-import { authService } from './auth.service.js';
-import { Toast } from '../../shared/components/toast.component.js';
-import { audioFeedback } from '../../shared/utils/dom.js';
-import { router } from '../../core/router/router.js';
+import { registerHtml } from '../../pages/register.template.js';
+import { authService } from '../services/auth.service.js';
+import { Toast } from '../components/toast.component.js';
+import { audioFeedback } from '../utils/dom.js';
+import { router } from '../core/router/router.js';
 
 export class RegisterController {
   constructor() {

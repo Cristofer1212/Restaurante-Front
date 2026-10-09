@@ -8,13 +8,13 @@
  * - Enlace directo al Backoffice Web para administradores.
  */
 
-import { authService } from './auth.service.js';
-import { PinPadComponent } from './components/pin-pad.component.js';
-import { AttendanceModalComponent } from './components/attendance-modal.component.js';
-import { Toast } from '../../shared/components/toast.component.js';
-import { audioFeedback } from '../../shared/utils/dom.js';
-import { router } from '../../core/router/router.js';
-import { authHtml } from './auth.template.js';
+import { authService } from '../services/auth.service.js';
+import { PinPadComponent } from '../components/pin-pad.component.js';
+import { AttendanceModalComponent } from '../components/attendance-modal.component.js';
+import { Toast } from '../components/toast.component.js';
+import { audioFeedback } from '../utils/dom.js';
+import { router } from '../core/router/router.js';
+import { authHtml } from '../../pages/auth.template.js';
 
 export class AuthController {
   constructor() {

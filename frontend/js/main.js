@@ -15,14 +15,14 @@ import { router } from './core/router/router.js';
 import { eventBus, AppEvents } from './core/events/event-bus.js';
 import { inactivityTimer } from './core/security/inactivity-timer.js';
 import { sessionStore } from './core/storage/session-store.js';
-import { Toast } from './shared/components/toast.component.js';
+import { Toast } from './components/toast.component.js';
 
-import { landingController } from './modules/landing/landing.controller.js';
-import { registerController } from './modules/auth/register.controller.js';
-import { authController } from './modules/auth/auth.controller.js';
-import { adminController } from './modules/admin/admin.controller.js';
-import { kitchenController } from './modules/kitchen/kitchen.controller.js';
-import { stockController } from './modules/stock/stock.controller.js';
+import { landingController } from './controllers/landing.controller.js';
+import { registerController } from './controllers/register.controller.js';
+import { authController } from './controllers/auth.controller.js';
+import { adminController } from './controllers/admin.controller.js';
+import { kitchenController } from './controllers/kitchen.controller.js';
+import { stockController } from './controllers/stock.controller.js';
 
 class Application {
   constructor() {
