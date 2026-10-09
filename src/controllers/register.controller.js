@@ -8,7 +8,7 @@
  * 4. Es redirigido al Dashboard Principal / Backoffice (#/admin).
  */
 
-import { registerHtml } from '../../pages/register.template.js';
+import { registerHtml } from '../views/register.template.js';
 import { authService } from '../services/auth.service.js';
 import { Toast } from '../components/toast.component.js';
 import { audioFeedback } from '../utils/dom.js';

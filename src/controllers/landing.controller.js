@@ -8,7 +8,7 @@
  * - Reconocimiento de sesión activa para reanudar turnos.
  */
 
-import { landingHtml } from '../../pages/landing.template.js';
+import { landingHtml } from '../views/landing.template.js';
 import { authService } from '../services/auth.service.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';

@@ -7,7 +7,7 @@
  * - Perfil de administrador y cierre de sesión seguro.
  */
 
-import { adminHtml } from '../../pages/admin.template.js';
+import { adminHtml } from '../views/admin.template.js';
 import { authService } from '../services/auth.service.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';

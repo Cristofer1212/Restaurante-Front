@@ -2,11 +2,11 @@
  * CONTROLADOR DE PANTALLA KDS (Cocina)
  */
 
-import { kitchenHtml } from '../../pages/kitchen.template.js';
+import { kitchenHtml } from '../views/kitchen.template.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';
 import { AttendanceModalComponent } from '../components/attendance-modal.component.js';
-import { authHtml } from '../../pages/auth.template.js';
+import { authHtml } from '../views/auth.template.js';
 import { DOM } from '../utils/dom.js';
 
 export class KitchenController {
