@@ -15,6 +15,7 @@ import { router } from './core/router/router.js';
 import { eventBus, AppEvents } from './core/events/event-bus.js';
 import { inactivityTimer } from './core/security/inactivity-timer.js';
 import { sessionStore } from './core/storage/session-store.js';
+import './styles/tailwind.css';
 import { Toast } from './components/toast.component.js';
 
 import { landingController } from './controllers/landing.controller.js';

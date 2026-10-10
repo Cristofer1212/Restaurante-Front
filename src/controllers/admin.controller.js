@@ -7,12 +7,11 @@
  * - Perfil de administrador y cierre de sesión seguro.
  */
 
-import { adminHtml } from '../views/admin.template.js';
 import { authService } from '../services/auth.service.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';
 import { Toast } from '../components/toast.component.js';
-import { audioFeedback } from '../utils/dom.js';
+import { audioFeedback, DOM } from '../utils/dom.js';
 
 export class AdminController {
   constructor() {
@@ -22,7 +21,7 @@ export class AdminController {
 
   async mount(container) {
     this.container = container;
-    this.container.innerHTML = adminHtml;
+    await DOM.loadTemplate('/src/views/admin.html', this.container);
 
     this._initUserProfile();
     this._initHealthCheck();

@@ -2,11 +2,9 @@
  * CONTROLADOR DE PANTALLA KDS (Cocina)
  */
 
-import { kitchenHtml } from '../views/kitchen.template.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';
 import { AttendanceModalComponent } from '../components/attendance-modal.component.js';
-import { authHtml } from '../views/auth.template.js';
 import { DOM } from '../utils/dom.js';
 
 export class KitchenController {
@@ -17,7 +15,7 @@ export class KitchenController {
 
   async mount(container) {
     this.container = container;
-    this.container.innerHTML = kitchenHtml;
+    await DOM.loadTemplate('/src/views/kitchen.html', this.container);
 
     const user = sessionStore.getUser();
     if (user) {
@@ -42,13 +40,14 @@ export class KitchenController {
     }
   }
 
-  _openAttendanceModal() {
+  async _openAttendanceModal() {
     let modalRoot = document.getElementById('kds-modal-root');
     if (!modalRoot) {
       modalRoot = DOM.create('div', { id: 'kds-modal-root' });
-      // Insertar el fragmento modal del auth template
+      const response = await fetch('/src/views/auth.html');
+      const html = await response.text();
       const temp = document.createElement('div');
-      temp.innerHTML = authHtml;
+      temp.innerHTML = html;
       const modalEl = temp.querySelector('#attendance-modal');
       if (modalEl) modalRoot.appendChild(modalEl);
       document.body.appendChild(modalRoot);
