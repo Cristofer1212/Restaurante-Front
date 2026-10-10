@@ -12,9 +12,8 @@ import { authService } from '../services/auth.service.js';
 import { PinPadComponent } from '../components/pin-pad.component.js';
 import { AttendanceModalComponent } from '../components/attendance-modal.component.js';
 import { Toast } from '../components/toast.component.js';
-import { audioFeedback } from '../utils/dom.js';
+import { audioFeedback, DOM } from '../utils/dom.js';
 import { router } from '../core/router/router.js';
-import { authHtml } from '../views/auth.template.js';
 
 export class AuthController {
   constructor() {
@@ -28,7 +27,7 @@ export class AuthController {
 
   async mount(container) {
     this.container = container;
-    this.container.innerHTML = authHtml;
+    await DOM.loadTemplate('/src/views/auth.html', this.container);
 
     this._initClock();
     this._initBackendStatus();

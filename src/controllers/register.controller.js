@@ -8,10 +8,9 @@
  * 4. Es redirigido al Dashboard Principal / Backoffice (#/admin).
  */
 
-import { registerHtml } from '../views/register.template.js';
 import { authService } from '../services/auth.service.js';
 import { Toast } from '../components/toast.component.js';
-import { audioFeedback } from '../utils/dom.js';
+import { audioFeedback, DOM } from '../utils/dom.js';
 import { router } from '../core/router/router.js';
 
 export class RegisterController {
@@ -22,7 +21,7 @@ export class RegisterController {
 
   async mount(container) {
     this.container = container;
-    this.container.innerHTML = registerHtml;
+    await DOM.loadTemplate('/src/views/register.html', this.container);
 
     // Detectar si la ruta incluye el parámetro ?mode=login
     const hash = window.location.hash;

@@ -8,7 +8,7 @@
  * - Reconocimiento de sesión activa para reanudar turnos.
  */
 
-import { landingHtml } from '../views/landing.template.js';
+import { DOM } from '../utils/dom.js';
 import { authService } from '../services/auth.service.js';
 import { sessionStore } from '../core/storage/session-store.js';
 import { router } from '../core/router/router.js';
@@ -22,7 +22,7 @@ export class LandingController {
 
   async mount(container) {
     this.container = container;
-    this.container.innerHTML = landingHtml;
+    await DOM.loadTemplate('/src/views/landing.html', this.container);
 
     this._initBackendStatus();
     this._checkActiveSession();

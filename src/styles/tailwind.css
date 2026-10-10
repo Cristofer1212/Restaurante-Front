@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "./variables.css";
+@import "./reset.css";
+@import "./base.css";
+@import "./landing.css";
+@import "./admin.css";
+@import "./auth.css";
+@import "./kitchen.css";
+@import "./stock.css";
+
+@source "../views";

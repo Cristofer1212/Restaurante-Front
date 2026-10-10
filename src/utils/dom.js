@@ -144,5 +144,22 @@ export const DOM = {
     const template = document.createElement('template');
     template.innerHTML = htmlString.trim();
     return template.content.firstElementChild;
+  },
+
+  async loadTemplate(path, container) {
+    try {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const html = await response.text();
+      
+      const containerElement = typeof container === 'string' ? document.querySelector(container) : container;
+      if (containerElement) {
+        containerElement.innerHTML = html;
+      } else {
+        console.error(`Contenedor no encontrado: ${container}`);
+      }
+    } catch (error) {
+      console.error(`Error cargando la plantilla desde ${path}:`, error);
+    }
   }
 };
