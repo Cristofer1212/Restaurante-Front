@@ -1,6 +1,6 @@
 /**
  * ESTILOS DE SOPORTE Y MAQUETACIÓN: LANDING PAGE CORPORATIVA (ESTILO SQUARE)
- * 
+ *
  * Garantiza contención perfecta del viewport, prevención de desbordamiento horizontal,
  * alineación simétrica y paddings generosos en todas las tarjetas y botones.
  */
@@ -28,7 +28,7 @@ html, body {
 }
 
 .landing-container {
-  max-width: 80rem; /* 1280px */
+  max-width: 80rem;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -387,6 +387,6 @@ html, body {
   }
 }
 
-.animate-fade-in {
+.landing-fade-in {
   animation: landingFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
