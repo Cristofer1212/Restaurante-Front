@@ -3,9 +3,9 @@
   <!-- ====================================================================
        1. BARRA DE NAVEGACIÓN SUPERIOR (NAVBAR ELEGANTE ESTILO SQUARE)
        ==================================================================== -->
-  <header class="w-full sticky top-0 z-50 bg-[#FBFBFA]/90 backdrop-blur-md border-b border-neutral-200/80 border-2 border-red-500  transition-all">
-    <div class=" h-20 flex items-center justify-between gap-4">
-      
+  <header class="w-full sticky top-0 z-50 bg-[#FBFBFA]/90 backdrop-blur-md border-b border-neutral-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
       <!-- Logotipo y Marca -->
       <a href="#/" class="flex items-center gap-3.5 group select-none text-neutral-950 no-underline">
         <div class="w-10 h-10 rounded-xl overflow-hidden bg-white border border-neutral-200/80 p-1 flex items-center justify-center shadow-xs group-hover:border-neutral-400 transition-colors flex-shrink-0">
@@ -19,7 +19,7 @@
 
       <!-- Estado de Conexión del Backend -->
       <div id="landing-backend-badge" class="hidden md:inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-medium border border-neutral-200 bg-white shadow-xs text-neutral-600 transition-all">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Verificando conexión...
+        <span class="w-2 h-2 rounded-full  animate-pulse"></span> Verificando conexión...
       </div>
 
       <!-- Acciones Principales (Sin recargas innecesarias) -->
@@ -50,14 +50,14 @@
        2. BARRA DE SESIÓN ACTIVA (ESPACIADO OPTIMIZADO Y CONTRASTE)
        ==================================================================== -->
   <div id="landing-active-session-banner" class="w-full bg-neutral-900 border-b border-neutral-800 text-white py-3.5 sm:py-4 transition-all shadow-md" style="display: none;">
-    <div class=" flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
-      
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+
       <!-- Información de Usuario -->
       <div class="flex items-center gap-3 text-sm text-neutral-200 text-center sm:text-left">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
         <div class="leading-normal">
           <span class="font-semibold text-white">Sesión activa detectada:</span>
-          <span id="landing-session-user-name" class="font-medium text-neutral-100 ml-1"></span> 
+          <span id="landing-session-user-name" class="font-medium text-neutral-100 ml-1"></span>
           <span id="landing-session-user-role" class="inline-block text-[11px] font-bold uppercase tracking-wider bg-neutral-800 text-neutral-300 border border-neutral-700 px-2.5 py-0.5 rounded-full ml-1.5 align-middle"></span>
         </div>
       </div>
@@ -78,30 +78,22 @@
   <!-- ====================================================================
        3. SECCIÓN HERO (PORTADA PRINCIPAL Y VIDEO PRESENTACIÓN)
        ==================================================================== -->
-  <section class="w-full pt-12 sm:pt-20 pb-16 sm:pb-24">
-    <div class=" text-center">
-      
-      <!-- Badge de Categoría con margen vertical independiente -->
-      <div class=" mb-6 sm:mb-8">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200/90 text-xs font-medium text-neutral-700 shadow-xs">
-          <span class="w-1.5 h-1.5 rounded-full bg-neutral-900"></span>
-          <span>Arquitectura Multiusuario Tipo Square • Alta Disponibilidad</span>
-        </div>
-      </div>
+  <section class=" w-full ">
+    <div class="   mx-auto px-6 lg:px-8 text-center">
 
       <!-- Encabezado Hero Estilo Serif Llamativo -->
-      <h1 class=" border-2 border-green-500 font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-neutral-950 leading-[1.08] text-balance mb-6 sm:mb-8">
+      <h1 class="  font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-neutral-950 leading-[1.08] text-balance mb-6 sm:mb-8">
         El sistema operativo integral para tu restaurante
       </h1>
 
       <!-- Subtítulo -->
-      <p class="border-2 border-green-500 text-lg sm:text-xl md:text-2xl text-neutral-600  font-normal leading-relaxed text-balance mb-8 sm:mb-12">
+      <p class="  text-lg sm:text-xl md:text-2xl text-neutral-600 font-normal leading-relaxed text-balance mb-6 sm:mb-6 max-w-3xl mx-auto">
         Una plataforma unificada para el <strong>Dueño del Negocio</strong> y su <strong>Equipo Operativo</strong>. Controla cocina en tiempo real, gestión de inventario, punto de venta y asistencia laboral con la máxima velocidad.
       </p>
 
-      <!-- Botones Hero Principales (Con padding interno amplio y sin solapamiento) -->
-      <div class="border-2 border-green-500 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6  w-full">
-        
+      <!-- Botones Hero Principales -->
+      <div class="  flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 w-full">
+
         <!-- CTA 1: Empezar (Administrador / Dueño) -->
         <a href="#/register" id="hero-btn-start" class="btn-hero-primary group w-full sm:w-auto">
           <div class="text-left leading-normal">
@@ -133,26 +125,26 @@
       </div>
 
       <!-- Enlace para Administradores Existentes -->
-      <div class="mt-6 text-sm text-neutral-600">
-        ¿Ya tienes cuenta de Administrador? 
+      <div class="  mt-6  text-sm text-neutral-600">
+        ¿Ya tienes cuenta de Administrador?
         <a href="#/register" id="link-admin-login" class="font-semibold text-neutral-900 hover:text-black underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors">
           Iniciar sesión aquí →
         </a>
       </div>
 
       <!-- Video de Presentación Hero (Bucle: autoplay, loop, muted, playsinline) -->
-      <div class="border-2 border-green-500 mt-12 sm:mt-16  w-full">
+      <div class="  mt-6 sm:mt-6 w-full">
         <div class="relative p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-neutral-900/5 backdrop-blur-xl border border-neutral-200/90 shadow-2xl">
           <div class="relative w-full aspect-video sm:aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-inner">
-            <video 
-              src="/assets/VideoPrincipal.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
+            <video
+              src="/assets/VideoPrincipal.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
               class="w-full h-full object-cover">
             </video>
-            
+
             <!-- Indicador flotante en esquina del video -->
             <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-medium border border-white/10 shadow-lg select-none">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -168,13 +160,13 @@
   <!-- ====================================================================
        4. SECCIÓN DE ÁREAS DEL RESTAURANTE (AUTO-SCROLL & INTERACTIVO)
        ==================================================================== -->
-  <section class="border border-blue-600 w-full py-20 sm:py-28 overflow-hidden">
-    <div class=" border border-blue-600">
-      
+  <section class=" w-full py-2 sm:py-2 overflow-hidden">
+    <div class=" ">
+
       <!-- Encabezado de la Sección de Áreas -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 border-b border-neutral-100 mb-8 sm:mb-12">
-        <div>
-          <div class="mb-4 sm:mb-6">
+        <div class="p-6">
+          <div class=" mb-4 sm:mb-6">
             <span class="inline-block text-xs font-bold uppercase tracking-widest text-neutral-500 bg-neutral-100 border border-neutral-200/80 px-3.5 py-1.5 rounded-full">
               Ecosistema Operativo
             </span>
@@ -189,19 +181,19 @@
 
         <!-- Controles interactivos del Carousel -->
         <div class="flex items-center gap-3 flex-shrink-0">
-          <button 
-            type="button" 
-            id="areas-carousel-prev" 
-            aria-label="Desplazar hacia la izquierda" 
+          <button
+            type="button"
+            id="areas-carousel-prev"
+            aria-label="Desplazar hacia la izquierda"
             class="w-12 h-12 rounded-full border border-neutral-300 bg-white hover:bg-neutral-100 flex items-center justify-center text-neutral-800 shadow-xs hover:shadow-sm transition-all active:scale-95 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </button>
-          <button 
-            type="button" 
-            id="areas-carousel-next" 
-            aria-label="Desplazar hacia la derecha" 
+          <button
+            type="button"
+            id="areas-carousel-next"
+            aria-label="Desplazar hacia la derecha"
             class="w-12 h-12 rounded-full border border-neutral-300 bg-white hover:bg-neutral-100 flex items-center justify-center text-neutral-800 shadow-xs hover:shadow-sm transition-all active:scale-95 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -212,20 +204,20 @@
 
       <!-- Contenedor Envolvente que Previene Desbordamientos Horizontales -->
       <div class="carousel-outer-wrapper">
-        <div 
-          id="areas-carousel" 
+        <div
+          id="areas-carousel"
           class="no-scrollbar scrollbar-hide">
-          
+
           <!-- 1. Almacén e Insumos (Imagen: /assets/almacen.png) -->
           <div class="area-card group">
-            <img 
-              src="/assets/almacen.png" 
-              alt="Almacén e Insumos" 
-              class="area-card-media" 
-              loading="lazy" 
+            <img
+              src="/assets/almacen.png"
+              alt="Almacén e Insumos"
+              class="area-card-media"
+              loading="lazy"
             />
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               01 • Insumos
             </div>
@@ -246,16 +238,16 @@
 
           <!-- 2. Área de Carnes (Video: /assets/areaCarnes.mp4) -->
           <div class="area-card group">
-            <video 
-              src="/assets/areaCarnes.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
+            <video
+              src="/assets/areaCarnes.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
               class="area-card-media">
             </video>
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               02 • Cocina Caliente
             </div>
@@ -276,16 +268,16 @@
 
           <!-- 3. Área de Pase (Video: /assets/AreaDePase.mp4) -->
           <div class="area-card group">
-            <video 
-              src="/assets/AreaDePase.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
+            <video
+              src="/assets/AreaDePase.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
               class="area-card-media">
             </video>
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               03 • Expedición
             </div>
@@ -306,16 +298,16 @@
 
           <!-- 4. Área de Preparación (Video: /assets/AreaDePreparacion.mp4) -->
           <div class="area-card group">
-            <video 
-              src="/assets/AreaDePreparacion.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
+            <video
+              src="/assets/AreaDePreparacion.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
               class="area-card-media">
             </video>
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               04 • Mise en Place
             </div>
@@ -336,16 +328,16 @@
 
           <!-- 5. Área de Salsas (Video: /assets/AreaDeSalsas.mp4) -->
           <div class="area-card group">
-            <video 
-              src="/assets/AreaDeSalsas.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
+            <video
+              src="/assets/AreaDeSalsas.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
               class="area-card-media">
             </video>
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               05 • Sazonado & Toppings
             </div>
@@ -366,14 +358,14 @@
 
           <!-- 6. Comanda para Mozos (Imagen: /assets/comandaParaMosos.jpg) -->
           <div class="area-card group">
-            <img 
-              src="/assets/comandaParaMosos.jpg" 
-              alt="Comanda para Mozos" 
-              class="area-card-media" 
-              loading="lazy" 
+            <img
+              src="/assets/comandaParaMosos.jpg"
+              alt="Comanda para Mozos"
+              class="area-card-media"
+              loading="lazy"
             />
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               06 • Salón & Mesas
             </div>
@@ -394,14 +386,14 @@
 
           <!-- 7. Delivery y Pedidos (Imagen: /assets/delivery.png) -->
           <div class="area-card group">
-            <img 
-              src="/assets/delivery.png" 
-              alt="Delivery y Pedidos" 
-              class="area-card-media" 
-              loading="lazy" 
+            <img
+              src="/assets/delivery.png"
+              alt="Delivery y Pedidos"
+              class="area-card-media"
+              loading="lazy"
             />
             <div class="area-card-overlay"></div>
-            
+
             <div class="area-card-badge">
               07 • Pedidos Externos
             </div>
@@ -429,11 +421,11 @@
   <!-- ====================================================================
        5. SECCIÓN ARQUITECTURA SQUARE: SEPARACIÓN DE ROLES
        ==================================================================== -->
-  <section class=" border-2 border-purple-500   ">
-    <div class="  ">
-      
-      <!-- Encabezado con márgenes verticales amplios para evitar superposiciones -->
-      <div class="border border-amber-600 text-center  ">
+  <section class="">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 ">
+
+      <!-- Encabezado -->
+      <div class="  text-center max-w-3xl mx-auto mb-8 sm:mb-8">
         <div class="mb-4 sm:mb-6">
           <span class="inline-block text-xs font-bold uppercase tracking-widest text-neutral-500 bg-neutral-100 border border-neutral-200/80 px-3.5 py-1.5 rounded-full">
             Diseñado para la Gastronomía Real
@@ -442,15 +434,15 @@
         <h2 class="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-neutral-950 mt-3 mb-6 leading-tight">
           Dos flujos de trabajo. Máxima sincronización.
         </h2>
-        <p class="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed mt-4">
+        <p class="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed">
           Inspirado en la separación de responsabilidades de Square: la gerencia gestiona y analiza desde la web, mientras que el personal operativo interactúa con terminales táctiles de alta velocidad.
         </p>
       </div>
 
-      <div class="border border-amber-600 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12  ">
-        
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+
         <!-- Columna 1: Administrador / Dueño (Role Card con Padding Amplio) -->
-        <div class="role-card ">
+        <div class="role-card">
           <div>
             <div class="w-12 h-12 rounded-xl bg-neutral-900 text-white flex items-center justify-center mb-6 shadow-xs">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -541,11 +533,11 @@
   <!-- ====================================================================
        6. PILARES DE HARDWARE & RENDIMIENTO ESTILO SQUARE
        ==================================================================== -->
-  <section class="w-full py-24 sm:py-28 bg-neutral-100/60 border-t border-neutral-200/80">
-    <div class="">
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        
+  <section class="w-full py-6 sm:py-6 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+
         <div class="hardware-card">
           <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-lg mb-4">⚡</div>
           <h4 class="font-serif text-lg font-normal text-neutral-950 mb-2">Terminal Táctil</h4>
@@ -586,11 +578,11 @@
   <!-- ====================================================================
        7. PIE DE PÁGINA (FOOTER PURAMENTE INFORMATIVO, SIN ENLACES A MÓDULOS)
        ==================================================================== -->
-  <footer class="w-full bg-neutral-950 text-neutral-400 border-t border-neutral-900 py-20 sm:py-24 mt-auto">
-    <div class="">
-      
+  <footer class="w-full bg-neutral-950 text-neutral-400 border-t  py-2 sm:py-4 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
       <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-neutral-800/80">
-        
+
         <!-- Identidad Institucional -->
         <div class="md:col-span-2 space-y-4">
           <div class="flex items-center gap-3">
