@@ -1,52 +1,44 @@
-<div class="landing-view animate-fade-in">
+<div class="landing-view w-full max-w-full overflow-x-hidden min-h-screen bg-[#FBFBFA] text-neutral-900 font-sans antialiased selection:bg-neutral-900 selection:text-white landing-fade-in flex flex-col box-border">
 
   <!-- ====================================================================
-       1. BARRA DE NAVEGACIÓN SUPERIOR (NAVBAR)
+       1. BARRA DE NAVEGACIÓN SUPERIOR (NAVBAR ELEGANTE ESTILO SQUARE)
        ==================================================================== -->
-  <header class="landing-navbar">
-    <div class="landing-nav-container">
-      
-      <!-- Logotipo / Marca Corporativa -->
-      <a href="#/" class="landing-brand">
-        <div class="landing-brand-logo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
+  <header class="w-full sticky top-0 z-50 bg-[#FBFBFA]/90 backdrop-blur-md border-b border-neutral-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+      <!-- Logotipo y Marca -->
+      <a href="#/" class="flex items-center gap-3.5 group select-none text-neutral-950 no-underline">
+        <div class="w-10 h-10 rounded-xl overflow-hidden bg-white border border-neutral-200/80 p-1 flex items-center justify-center shadow-xs group-hover:border-neutral-400 transition-colors flex-shrink-0">
+          <img src="/assets/logo.png" alt="Square Gastro" class="w-full h-full object-contain" />
         </div>
-        <div class="landing-brand-text">
-          <span class="landing-brand-name">Square Gastro</span>
-          <span class="landing-brand-tag">POS & KDS System</span>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 leading-none">Square Gastro</span>
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mt-1">Restaurant OS</span>
         </div>
       </a>
 
-      <!-- Enlaces de Navegación y Conexión -->
-      <nav class="landing-nav-links">
-        <a href="#features" class="landing-nav-link">Módulos</a>
-        <a href="#architecture" class="landing-nav-link">Arquitectura</a>
-        <div id="landing-backend-badge" class="badge badge-navy">
-          <span class="status-dot"></span> Verificando conexión...
-        </div>
-      </nav>
+      <!-- Estado de Conexión del Backend -->
+      <div id="landing-backend-badge" class="hidden md:inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-medium border border-neutral-200 bg-white shadow-xs text-neutral-600 transition-all">
+        <span class="w-2 h-2 rounded-full  animate-pulse"></span> Verificando conexión...
+      </div>
 
-      <!-- Acciones de Cabecera -->
-      <div class="landing-nav-actions">
-        <!-- Botón Soy Empleado (Acceso Rápido a Terminal) -->
-        <a href="#/terminal" class="btn btn-secondary btn-nav-employee" id="nav-btn-employee">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+      <!-- Acciones Principales (Sin recargas innecesarias) -->
+      <div class="flex items-center gap-3">
+        <!-- Soy Empleado (Acceso a Terminal Táctil) -->
+        <a href="#/terminal" id="nav-btn-employee" class="btn-nav-action-secondary">
+          <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
           </svg>
-          Soy empleado
+          <span>Soy empleado</span>
         </a>
 
-        <!-- Botón Empezar (Registro de Administrador) -->
-        <a href="#/register" class="btn btn-brand btn-nav-start" id="nav-btn-start">
-          Empezar
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
+        <!-- Empezar (Registro / Dueño) -->
+        <a href="#/register" id="nav-btn-start" class="btn-nav-action-primary">
+          <span>Empezar</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </a>
       </div>
@@ -54,102 +46,111 @@
     </div>
   </header>
 
-  <!-- Banner de Sesión Activa (visible si el usuario ya inició sesión previamente) -->
-  <div id="landing-active-session-banner" class="active-session-banner" style="display: none;">
-    <div class="session-banner-content">
-      <span class="session-banner-icon">👤</span>
-      <div>
-        <strong>Sesión activa detectada:</strong>
-        <span id="landing-session-user-name">Usuario</span> 
-        (<span id="landing-session-user-role">ROL</span>)
+  <!-- ====================================================================
+       2. BARRA DE SESIÓN ACTIVA (ESPACIADO OPTIMIZADO Y CONTRASTE)
+       ==================================================================== -->
+  <div id="landing-active-session-banner" class="w-full bg-neutral-900 border-b border-neutral-800 text-white py-3.5 sm:py-4 transition-all shadow-md" style="display: none;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+
+      <!-- Información de Usuario -->
+      <div class="flex items-center gap-3 text-sm text-neutral-200 text-center sm:text-left">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+        <div class="leading-normal">
+          <span class="font-semibold text-white">Sesión activa detectada:</span>
+          <span id="landing-session-user-name" class="font-medium text-neutral-100 ml-1"></span>
+          <span id="landing-session-user-role" class="inline-block text-[11px] font-bold uppercase tracking-wider bg-neutral-800 text-neutral-300 border border-neutral-700 px-2.5 py-0.5 rounded-full ml-1.5 align-middle"></span>
+        </div>
       </div>
-    </div>
-    <div class="session-banner-actions">
-      <a href="#/admin" id="landing-session-resume-link" class="btn btn-brand btn-sm">
-        Continuar al Panel →
-      </a>
-      <button type="button" id="landing-session-logout-btn" class="btn btn-ghost btn-sm">
-        Cerrar Sesión
-      </button>
+
+      <!-- Acciones de Sesión (Botones Separados y Legibles) -->
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <a href="#/admin" id="landing-session-resume-link" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-neutral-950 hover:bg-neutral-100 transition-all shadow-sm hover:shadow active:scale-95 whitespace-nowrap">
+          Continuar a Estación →
+        </a>
+        <button type="button" id="landing-session-logout-btn" class="inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium text-neutral-300 hover:text-white underline underline-offset-4 transition-colors cursor-pointer whitespace-nowrap">
+          Cerrar Sesión
+        </button>
+      </div>
+
     </div>
   </div>
 
   <!-- ====================================================================
-       2. SECCIÓN HERO (PORTADA PRINCIPAL Y CTAS CLAVE)
+       3. SECCIÓN HERO (PORTADA PRINCIPAL Y VIDEO PRESENTACIÓN)
        ==================================================================== -->
-  <section class="landing-hero-section">
-    <div class="landing-hero-container">
-      
-      <div class="hero-badge-wrap">
-        <span class="badge badge-brand">
-          ✨ Arquitectura Multiusuario Tipo Square • Alta Disponibilidad
-        </span>
-      </div>
+  <section class=" w-full ">
+    <div class="   mx-auto px-6 lg:px-8 text-center">
 
-      <h1 class="landing-hero-title">
+      <!-- Encabezado Hero Estilo Serif Llamativo -->
+      <h1 class="  font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-neutral-950 leading-[1.08] text-balance mb-6 sm:mb-8">
         El sistema operativo integral para tu restaurante
       </h1>
 
-      <p class="landing-hero-subtitle">
-        Una plataforma unificada para el <strong>Dueño del Negocio</strong> y su <strong>Equipo Operativo</strong>. 
-        Controla cocina en tiempo real, gestión de inventario, punto de venta y asistencia laboral con la máxima velocidad.
+      <!-- Subtítulo -->
+      <p class="  text-lg sm:text-xl md:text-2xl text-neutral-600 font-normal leading-relaxed text-balance mb-6 sm:mb-6 max-w-3xl mx-auto">
+        Una plataforma unificada para el <strong>Dueño del Negocio</strong> y su <strong>Equipo Operativo</strong>. Controla cocina en tiempo real, gestión de inventario, punto de venta y asistencia laboral con la máxima velocidad.
       </p>
 
-      <!-- Los Dos Botones Principales (CTAs Requeridos) -->
-      <div class="landing-hero-ctas">
-        
-        <!-- CTA 1: Empezar -> Registro de Administrador / Dueño -->
-        <a href="#/register" class="btn btn-brand btn-cta-main" id="hero-btn-start">
-          <span class="cta-label">Empezar</span>
-          <span class="cta-desc">Crear cuenta de Administrador</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
+      <!-- Botones Hero Principales -->
+      <div class="  flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 w-full">
+
+        <!-- CTA 1: Empezar (Administrador / Dueño) -->
+        <a href="#/register" id="hero-btn-start" class="btn-hero-primary group w-full sm:w-auto">
+          <div class="text-left leading-normal">
+            <span class="block text-base sm:text-lg font-semibold text-white tracking-tight leading-snug">Empezar</span>
+            <span class="block text-xs text-neutral-300 font-normal leading-normal mt-0.5">Crear cuenta de Administrador</span>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors ml-2 flex-shrink-0">
+            <svg class="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </div>
         </a>
 
-        <!-- CTA 2: Soy empleado -> Terminal de Personal (DNI + PIN) -->
-        <a href="#/terminal" class="btn btn-secondary btn-cta-secondary" id="hero-btn-employee">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
-          <div>
-            <span class="cta-label">Soy empleado</span>
-            <span class="cta-desc">Terminal táctil con DNI y PIN</span>
+        <!-- CTA 2: Soy empleado (Terminal de Personal) -->
+        <a href="#/terminal" id="hero-btn-employee" class="btn-hero-secondary group w-full sm:w-auto">
+          <div class="text-left leading-normal">
+            <span class="block text-base sm:text-lg font-semibold text-neutral-950 tracking-tight leading-snug">Soy empleado</span>
+            <span class="block text-xs text-neutral-500 font-normal leading-normal mt-0.5">Terminal táctil con DNI y PIN</span>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-neutral-200 transition-colors ml-2 flex-shrink-0">
+            <svg class="w-4 h-4 text-neutral-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
           </div>
         </a>
 
       </div>
 
       <!-- Enlace para Administradores Existentes -->
-      <div class="landing-login-hint">
-        ¿Ya tienes cuenta de Administrador? 
-        <a href="#/register" class="landing-link-highlight" id="link-admin-login">Iniciar sesión aquí →</a>
+      <div class="  mt-6  text-sm text-neutral-600">
+        ¿Ya tienes cuenta de Administrador?
+        <a href="#/register" id="link-admin-login" class="font-semibold text-neutral-900 hover:text-black underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors">
+          Iniciar sesión aquí →
+        </a>
       </div>
 
-      <!-- Previsualización de Dispositivos / Estaciones de Trabajo -->
-      <div class="landing-preview-grid">
-        <div class="preview-card preview-backoffice">
-          <div class="preview-tag">Dueño / Gerencia</div>
-          <div class="preview-title">Dashboard Backoffice</div>
-          <p>Métricas clave, configuración general y alta de colaboradores en el sistema.</p>
-        </div>
-        <div class="preview-card preview-kds">
-          <div class="preview-tag">Jefe de Cocina</div>
-          <div class="preview-title">KDS en Tiempo Real</div>
-          <p>Pantalla fija permanente para despacho de comandas sin interrupciones.</p>
-        </div>
-        <div class="preview-card preview-terminal">
-          <div class="preview-tag">Mozos & Cajeros</div>
-          <div class="preview-title">Terminal Táctil</div>
-          <p>Login ágil con PIN de 4 dígitos y marcación automática de asistencia.</p>
-        </div>
-        <div class="preview-card preview-stock">
-          <div class="preview-tag">Almacenero</div>
-          <div class="preview-title">Control de Insumos</div>
-          <p>Seguridad reforzada con auto-bloqueo preventivo a los 90 segundos.</p>
+      <!-- Video de Presentación Hero (Bucle: autoplay, loop, muted, playsinline) -->
+      <div class="  mt-6 sm:mt-6 w-full">
+        <div class="relative p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-neutral-900/5 backdrop-blur-xl border border-neutral-200/90 shadow-2xl">
+          <div class="relative w-full aspect-video sm:aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-inner">
+            <video
+              src="/assets/VideoPrincipal.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="w-full h-full object-cover">
+            </video>
+
+            <!-- Indicador flotante en esquina del video -->
+            <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-medium border border-white/10 shadow-lg select-none">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Sistema en Vivo • Producción Continua</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -157,71 +158,368 @@
   </section>
 
   <!-- ====================================================================
-       3. SECCIÓN DE ARQUITECTURA DE FLUJO (SQUARE FLOW EXPLAINED)
+       4. SECCIÓN DE ÁREAS DEL RESTAURANTE (AUTO-SCROLL & INTERACTIVO)
        ==================================================================== -->
-  <section id="architecture" class="landing-flow-section">
-    <div class="landing-section-container">
-      
-      <div class="section-header-center">
-        <span class="badge badge-brand">Flujo de Navegación</span>
-        <h2 class="text-h1">Diseñado para cada rol del restaurante</h2>
-        <p class="text-body" style="max-width: 640px; margin: 0.5rem auto 0;">
-          Inspirado en la separación de responsabilidades de Square: la gerencia gestiona desde la web, 
-          mientras que el personal operativo interactúa mediante terminales táctiles con PIN.
+  <section class=" w-full py-2 sm:py-2 overflow-hidden">
+    <div class=" ">
+
+      <!-- Encabezado de la Sección de Áreas -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 border-b border-neutral-100 mb-8 sm:mb-12">
+        <div class="p-6">
+          <div class=" mb-4 sm:mb-6">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-neutral-500 bg-neutral-100 border border-neutral-200/80 px-3.5 py-1.5 rounded-full">
+              Ecosistema Operativo
+            </span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-950 mt-2 mb-4 leading-tight">
+            Solución para todas las áreas de tu restaurante
+          </h2>
+          <p class="text-base sm:text-lg text-neutral-600 max-w-2xl font-normal leading-relaxed">
+            Cada rincón de tu restaurante cuenta con herramientas especializadas diseñadas para soportar la máxima demanda en horas punta.
+          </p>
+        </div>
+
+        <!-- Controles interactivos del Carousel -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button
+            type="button"
+            id="areas-carousel-prev"
+            aria-label="Desplazar hacia la izquierda"
+            class="w-12 h-12 rounded-full border border-neutral-300 bg-white hover:bg-neutral-100 flex items-center justify-center text-neutral-800 shadow-xs hover:shadow-sm transition-all active:scale-95 cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button
+            type="button"
+            id="areas-carousel-next"
+            aria-label="Desplazar hacia la derecha"
+            class="w-12 h-12 rounded-full border border-neutral-300 bg-white hover:bg-neutral-100 flex items-center justify-center text-neutral-800 shadow-xs hover:shadow-sm transition-all active:scale-95 cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenedor Envolvente que Previene Desbordamientos Horizontales -->
+      <div class="carousel-outer-wrapper">
+        <div
+          id="areas-carousel"
+          class="no-scrollbar scrollbar-hide">
+
+          <!-- 1. Almacén e Insumos (Imagen: /assets/almacen.png) -->
+          <div class="area-card group">
+            <img
+              src="/assets/almacen.png"
+              alt="Almacén e Insumos"
+              class="area-card-media"
+              loading="lazy"
+            />
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              01 • Insumos
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Control de Stock</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Almacén e Insumos</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Kardex en tiempo real, registro de mermas y auditoría blindada de almacén.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Área de Carnes (Video: /assets/areaCarnes.mp4) -->
+          <div class="area-card group">
+            <video
+              src="/assets/areaCarnes.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="area-card-media">
+            </video>
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              02 • Cocina Caliente
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Parrilla & Fuego</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Área de Carnes</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Términos de cocción exactos y sincronización con tiempos de guarnición.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Área de Pase (Video: /assets/AreaDePase.mp4) -->
+          <div class="area-card group">
+            <video
+              src="/assets/AreaDePase.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="area-card-media">
+            </video>
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              03 • Expedición
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Control de Calidad</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Área de Pase</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Revisión de platos listos, unificación de comandas y llamado a mozos.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Área de Preparación (Video: /assets/AreaDePreparacion.mp4) -->
+          <div class="area-card group">
+            <video
+              src="/assets/AreaDePreparacion.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="area-card-media">
+            </video>
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              04 • Mise en Place
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Producción Continua</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Área de Preparación</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Corte, pre-elaboración y abastecimiento de estaciones con cero cuellos de botella.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Área de Salsas (Video: /assets/AreaDeSalsas.mp4) -->
+          <div class="area-card group">
+            <video
+              src="/assets/AreaDeSalsas.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="area-card-media">
+            </video>
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              05 • Sazonado & Toppings
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Estandarización</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Área de Salsas</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Porcionado exacto de recetas clave, aderezos y acompañamientos de firma.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Comanda para Mozos (Imagen: /assets/comandaParaMosos.jpg) -->
+          <div class="area-card group">
+            <img
+              src="/assets/comandaParaMosos.jpg"
+              alt="Comanda para Mozos"
+              class="area-card-media"
+              loading="lazy"
+            />
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              06 • Salón & Mesas
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Servicio en Sala</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Comanda para Mozos</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Toma de comandas ágil, notas para cocina y gestión de cuentas por mesa.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Delivery y Pedidos (Imagen: /assets/delivery.png) -->
+          <div class="area-card group">
+            <img
+              src="/assets/delivery.png"
+              alt="Delivery y Pedidos"
+              class="area-card-media"
+              loading="lazy"
+            />
+            <div class="area-card-overlay"></div>
+
+            <div class="area-card-badge">
+              07 • Pedidos Externos
+            </div>
+
+            <div class="area-card-bottom">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-300 block mb-1">Despacho y Reparto</span>
+                <h3 class="font-serif text-2xl font-normal text-white leading-snug">Delivery y Pedidos</h3>
+                <p class="text-xs text-neutral-300 mt-1 line-clamp-2 font-normal">Recepción centralizada de pedidos para llevar, empaque y control de mensajeros.</p>
+              </div>
+              <div class="area-card-btn">
+                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. SECCIÓN ARQUITECTURA SQUARE: SEPARACIÓN DE ROLES
+       ==================================================================== -->
+  <section class="">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 ">
+
+      <!-- Encabezado -->
+      <div class="  text-center max-w-3xl mx-auto mb-8 sm:mb-8">
+        <div class="mb-4 sm:mb-6">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-neutral-500 bg-neutral-100 border border-neutral-200/80 px-3.5 py-1.5 rounded-full">
+            Diseñado para la Gastronomía Real
+          </span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-neutral-950 mt-3 mb-6 leading-tight">
+          Dos flujos de trabajo. Máxima sincronización.
+        </h2>
+        <p class="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed">
+          Inspirado en la separación de responsabilidades de Square: la gerencia gestiona y analiza desde la web, mientras que el personal operativo interactúa con terminales táctiles de alta velocidad.
         </p>
       </div>
 
-      <div class="flow-columns-grid">
-        
-        <!-- Tarjeta Flujo Dueño -->
-        <div class="flow-card glass-panel">
-          <div class="flow-card-icon admin-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="8.5" cy="7" r="4"></circle>
-              <polyline points="17 11 19 13 23 9"></polyline>
-            </svg>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+
+        <!-- Columna 1: Administrador / Dueño (Role Card con Padding Amplio) -->
+        <div class="role-card">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-neutral-900 text-white flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200/70 mb-3">
+              Flujo 1 • Administrador / Dueño
+            </span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-normal text-neutral-950 mt-2 mb-3">
+              Clic en "Empezar"
+            </h3>
+            <p class="text-neutral-600 text-sm leading-relaxed mb-6 font-normal">
+              El dueño o administrador crea la cuenta corporativa del restaurante y controla la infraestructura desde el panel central.
+            </p>
+
+            <ul class="space-y-3 text-sm text-neutral-700">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Registro directo:</strong> Ingreso de DNI, credenciales y PIN maestro de 4 dígitos.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Dashboard Backoffice:</strong> Acceso a indicadores clave de venta y desempeño en tiempo real.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Alta de colaboradores:</strong> Creación de empleados asignándoles rol, DNI y PIN personal.</span>
+              </li>
+            </ul>
           </div>
-          <span class="badge badge-brand">Flujo 1 • Administrador / Dueño</span>
-          <h3 class="text-h2" style="margin-top: 0.75rem;">1. Clic en "Empezar"</h3>
-          <p class="text-body">
-            El dueño o administrador crea su cuenta corporativa en el sistema.
-          </p>
-          <ul class="flow-steps-list">
-            <li><strong>Registro directo:</strong> Ingreso de DNI, usuario y PIN maestro de 4 dígitos.</li>
-            <li><strong>Autenticación automática:</strong> Inicio de sesión inmediato sin fricciones.</li>
-            <li><strong>Dashboard Backoffice:</strong> Acceso al panel gerencial con métricas y configuraciones.</li>
-            <li><strong>Alta de colaboradores:</strong> Crear empleados asignándoles rol, DNI y PIN de acceso.</li>
-          </ul>
-          <div style="margin-top: 1.5rem;">
-            <a href="#/register" class="btn btn-brand" style="width: 100%;">
+
+          <div class="mt-8 pt-6 border-t border-neutral-100">
+            <a href="#/register" class="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-neutral-900 hover:bg-black text-white font-semibold text-sm transition-all shadow-sm">
               Crear Cuenta de Dueño →
             </a>
           </div>
         </div>
 
-        <!-- Tarjeta Flujo Empleados -->
-        <div class="flow-card glass-panel">
-          <div class="flow-card-icon employee-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
+        <!-- Columna 2: Personal Operativo (Role Card con Padding Amplio) -->
+        <div class="role-card">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-neutral-100 text-neutral-900 border border-neutral-200 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200/70 mb-3">
+              Flujo 2 • Colaboradores Operativos
+            </span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-normal text-neutral-950 mt-2 mb-3">
+              Clic en "Soy empleado"
+            </h3>
+            <p class="text-neutral-600 text-sm leading-relaxed mb-6 font-normal">
+              Los operarios no requieren formularios complejos; acceden al instante con su DNI y PIN en la terminal de estación.
+            </p>
+
+            <ul class="space-y-3 text-sm text-neutral-700">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Terminal Táctil:</strong> Teclado numérico optimizado para rapidez con dedos y guantes.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Control de Asistencia:</strong> Marcación automática de Clock-In / Clock-Out para Planilla.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-900 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+                <span><strong>Enrutamiento instantáneo:</strong> Redirección directa a KDS (Cocina), Almacén o Sala.</span>
+              </li>
+            </ul>
           </div>
-          <span class="badge badge-navy">Flujo 2 • Colaboradores Operativos</span>
-          <h3 class="text-h2" style="margin-top: 0.75rem;">2. Clic en "Soy empleado"</h3>
-          <p class="text-body">
-            Los operarios no completan formularios de registro; acceden directamente a la terminal de trabajo.
-          </p>
-          <ul class="flow-steps-list">
-            <li><strong>Terminal de Personal:</strong> Pantalla táctil optimizada para dedos y rapidez.</li>
-            <li><strong>Login con DNI & PIN:</strong> Validación ágil de 4 dígitos en el teclado numérico.</li>
-            <li><strong>Control de Asistencia:</strong> Marcación de Clock-In / Clock-Out para Planilla Perú.</li>
-            <li><strong>Enrutamiento automático:</strong> Redirección instantánea a su estación (Cocina KDS, Almacén o Caja).</li>
-          </ul>
-          <div style="margin-top: 1.5rem;">
-            <a href="#/terminal" class="btn btn-secondary" style="width: 100%;">
+
+          <div class="mt-8 pt-6 border-t border-neutral-100">
+            <a href="#/terminal" class="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-neutral-100 hover:bg-neutral-200/80 text-neutral-900 border border-neutral-300 font-semibold text-sm transition-all shadow-xs">
               Abrir Terminal de Personal →
             </a>
           </div>
@@ -233,63 +531,42 @@
   </section>
 
   <!-- ====================================================================
-       4. SECCIÓN DE CARACTERÍSTICAS Y MÓDULOS DEL POS
+       6. PILARES DE HARDWARE & RENDIMIENTO ESTILO SQUARE
        ==================================================================== -->
-  <section id="features" class="landing-features-section">
-    <div class="landing-section-container">
-      
-      <div class="section-header-center">
-        <span class="badge badge-brand">Potencia Operativa</span>
-        <h2 class="text-h1">Todo lo que tu restaurante necesita</h2>
-      </div>
+  <section class="w-full py-6 sm:py-6 ">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
-      <div class="features-grid">
-        
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">⚡</div>
-          <h3 class="text-h3">Terminal de Personal Táctil</h3>
-          <p class="text-caption">
-            Teclado numérico en pantalla de alta ergonomía. Permite a los colaboradores iniciar turno y autenticarse en segundos.
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+
+        <div class="hardware-card">
+          <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-lg mb-4">⚡</div>
+          <h4 class="font-serif text-lg font-normal text-neutral-950 mb-2">Terminal Táctil</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+            Inicio de turno ergonómico en menos de 2 segundos mediante teclado numérico de alta respuesta.
           </p>
         </div>
 
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">🍳</div>
-          <h3 class="text-h3">Cocina Digital (KDS)</h3>
-          <p class="text-caption">
-            Pantalla fija permanente (fixed_screen). No sufre bloqueos por inactividad para garantizar el despacho fluido de platos.
+        <div class="hardware-card">
+          <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-lg mb-4">🍳</div>
+          <h4 class="font-serif text-lg font-normal text-neutral-950 mb-2">Cocina Digital KDS</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+            Pantalla fija permanente (fixed_screen) sin auto-bloqueos para garantizar despacho ininterrumpido.
           </p>
         </div>
 
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">📦</div>
-          <h3 class="text-h3">Control de Insumos y Stock</h3>
-          <p class="text-caption">
-            Auto-bloqueo de seguridad a los 90 segundos para resguardar las operaciones de almacén y materias primas.
+        <div class="hardware-card">
+          <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-lg mb-4">📦</div>
+          <h4 class="font-serif text-lg font-normal text-neutral-950 mb-2">Seguridad en Almacén</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+            Auto-bloqueo preventivo a los 90 segundos para resguardar transferencias e insumos críticos.
           </p>
         </div>
 
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">⏱️</div>
-          <h3 class="text-h3">Marcación de Asistencia (Planilla)</h3>
-          <p class="text-caption">
-            Registro automático de marcación de entrada y salida para el control de jornadas conforme a la normativa laboral.
-          </p>
-        </div>
-
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">💾</div>
-          <h3 class="text-h3">Almacenamiento Confiable</h3>
-          <p class="text-caption">
-            Información centralizada y respaldada en tiempo real para garantizar la disponibilidad continua de su restaurante.
-          </p>
-        </div>
-
-        <div class="feature-card glass-panel">
-          <div class="feature-icon">🛡️</div>
-          <h3 class="text-h3">Máxima Seguridad y Protección</h3>
-          <p class="text-caption">
-            Protocolos de autenticación blindada y control de accesos por roles para proteger las operaciones de tu negocio.
+        <div class="hardware-card">
+          <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-lg mb-4">⏱️</div>
+          <h4 class="font-serif text-lg font-normal text-neutral-950 mb-2">Control de Asistencia</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+            Marcación laboral verificada con trazabilidad horaria conforme al régimen de Planilla Perú.
           </p>
         </div>
 
@@ -299,43 +576,59 @@
   </section>
 
   <!-- ====================================================================
-       5. PIE DE PÁGINA (FOOTER CORPORATIVO)
+       7. PIE DE PÁGINA (FOOTER PURAMENTE INFORMATIVO, SIN ENLACES A MÓDULOS)
        ==================================================================== -->
-  <footer class="landing-footer">
-    <div class="landing-footer-container">
-      <div class="footer-brand-col">
-        <div class="landing-brand">
-          <div class="landing-brand-logo">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
+  <footer class="w-full bg-neutral-950 text-neutral-400 border-t  py-2 sm:py-4 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-neutral-800/80">
+
+        <!-- Identidad Institucional -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center">
+              <img src="/assets/logo.png" alt="Square Gastro" class="w-full h-full object-contain" />
+            </div>
+            <span class="font-serif text-xl font-bold tracking-tight text-white">Square Gastro</span>
           </div>
-          <span class="landing-brand-name">Square Gastro POS</span>
+          <p class="text-xs text-neutral-400 max-w-md leading-relaxed font-normal">
+            Sistema Operativo Integral de Alto Rendimiento para Restaurantes. Diseñado con arquitectura de separación de roles inspirada en Square para garantizar la máxima disponibilidad operativa en salón, cocina y almacén.
+          </p>
+          <div class="pt-2 text-[11px] text-neutral-500 font-mono">
+            Versión del Sistema 1.0.0 • Java SE & PostgreSQL Microservices Ready
+          </div>
         </div>
-        <p class="text-caption" style="margin-top: 0.5rem; max-width: 320px;">
-          Sistema Integral de Alto Rendimiento para Restaurantes. Control de Stock y Producción en Cocina.
-        </p>
+
+        <!-- Información Institucional -->
+        <div class="space-y-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-300 block">Institucional</span>
+          <ul class="space-y-2 text-xs text-neutral-400">
+            <li>Acerca de la plataforma</li>
+            <li>Arquitectura de Alta Disponibilidad</li>
+            <li>Protocolos de Seguridad y Cifrado</li>
+            <li>Soporte Técnico de Turno</li>
+          </ul>
+        </div>
+
+        <!-- Cumplimiento y Legal -->
+        <div class="space-y-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-300 block">Cumplimiento & Legal</span>
+          <ul class="space-y-2 text-xs text-neutral-400">
+            <li>Términos y Condiciones de Uso</li>
+            <li>Política de Privacidad y Datos</li>
+            <li>Control de Jornada Laboral (D.L. 728 Perú)</li>
+            <li>Estándares de Seguridad Gastronómica</li>
+          </ul>
+        </div>
+
       </div>
 
-      <div class="footer-links-col">
-        <span class="footer-col-title">Accesos Rápidos</span>
-        <a href="#/register">Registro de Administrador ("Empezar")</a>
-        <a href="#/terminal">Terminal de Personal ("Soy empleado")</a>
-        <a href="#/admin">Dashboard Backoffice</a>
+      <!-- Barra Inferior de Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-normal">
+        <p>© 2026 Square Gastro POS & KDS. Todos los derechos reservados.</p>
+        <p class="text-[11px]">Diseñado para operaciones gastronómicas sin fricción.</p>
       </div>
 
-      <div class="footer-links-col">
-        <span class="footer-col-title">Estaciones</span>
-        <a href="#/kitchen">Cocina KDS</a>
-        <a href="#/stock">Almacén e Insumos</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom-bar">
-      <span class="text-caption">Square Gastro POS & KDS • Sistema de Gestión Gastronómica</span>
-      <span class="text-caption">Todos los derechos reservados</span>
     </div>
   </footer>
 
