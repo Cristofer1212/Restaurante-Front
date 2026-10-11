@@ -5,7 +5,7 @@
  * simétricos con el backend Java com.restaurant.auth.
  */
 
-import { RegisterUserRequest, LoginPinRequest, ClockRequest } from './src/modules/auth/models/auth.models.js';
+import { RegisterUserRequest, LoginPinRequest, ClockRequest } from './src/models/auth.models.js';
 import { sessionStore } from './src/core/storage/session-store.js';
 import { inactivityTimer } from './src/core/security/inactivity-timer.js';
 import { apiClient } from './src/core/http/api-client.js';
